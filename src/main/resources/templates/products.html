@@ -3,22 +3,27 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Manage Users</title>
+  <title>Manage Products</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 
+
 <body>
   <div class="container">
     <div class="row" id="search">
-      <form id="search-form" action="" method="POST" enctype="multipart/form-data">
+      <form id="search-form" th:action="@{/products}">
         <div class="form-group col-xs-9">
-          <input class="form-control" type="text" placeholder="Search" />
+          <input name="keyword" class="form-control" type="text" placeholder="Search" th:value="${keyword}" required />
         </div>
         <div class="form-group col-xs-3">
           <button type="submit" class="btn btn-block btn-primary">Search</button>
         </div>
+        <div class="form-group col-xs-3">
+          <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+        </div>
+
       </form>
     </div>
     <div class="row" id="filter">
@@ -100,8 +105,28 @@
         </tbody>
       </table>
 
+      <!-- paging -->
+      <div class="clearfix">
+        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+        <ul class="pagination">
+          <li class="page-item disabled"><a href="#">Previous</a></li>
+          <li class="page-item active"><a href="#" class="page-link">1</a></li>
+          <li class="page-item"><a href="#" class="page-link">2</a></li>
+          <li class="page-item"><a href="#" class="page-link">3</a></li>
+          <li class="page-item"><a href="#" class="page-link">4</a></li>
+          <li class="page-item"><a href="#" class="page-link">5</a></li>
+          <li class="page-item"><a href="#" class="page-link">Next</a></li>
+        </ul>
+      </div>
+
     </div>
   </div>
+  <script type="text/javascript">
+    function clearSearch() {
+      window.location = "[[@{/products}]]";
+    }
+  </script>
+
 </body>
 
 </html>

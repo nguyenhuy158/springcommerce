@@ -1,6 +1,7 @@
 package com.example.springcommerce.product;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -15,13 +18,18 @@ public class ProductController {
     @Autowired
     private ProductService service;
 
-    @GetMapping("/products")
-    public String showProductList(Model model) {
-        List<Product> products = service.listAll();
-        model.addAttribute("listProducts", products);
+    @RequestMapping(value = "/products")
+    public String showProductList(
+            @RequestParam(name = "keyword", required = false) Optional<String> keyword,
+            Model model) {
+        List<Product> products;
 
-        System.out.println("size");
-        System.out.println(products.size());
+        if (keyword.isPresent()) {
+            products = service.search(keyword.get());
+        } else {
+            products = service.listAll();
+        }
+        model.addAttribute("listProducts", products);
         return "products";
     }
 
