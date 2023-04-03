@@ -11,6 +11,9 @@
 
 
 <body>
+  <!-- header -->
+
+  <!-- header -->
   <div class="container">
     <div class="row" id="search">
       <form id="search-form" th:action="@{/products}">
@@ -47,10 +50,12 @@
           </select>
         </div>
         <div class="form-group col-sm-3 col-xs-6">
-          <select data-filter="price" class="filter-price filter form-control">
-            <option value="">Select Price Range</option>
-            <option value="">Show All</option>
-          </select>
+          <form th:action="@{/products(keyword=${keyword}, pageSize=${pageSize})}" method="POST">
+            <select data-filter="price" class="filter-price filter form-control">
+              <option value="0">Price Desc</option>
+              <option value="1">Price Asc</option>
+            </select>
+          </form>
         </div>
       </form>
     </div>
@@ -59,6 +64,7 @@
     </div>
   </div>
 
+  <!-- table result -->
   <!-- split -->
   <div class="container-fluid text-center">
     <div>
@@ -76,12 +82,12 @@
       <table class="table table-bordered">
         <thead class="thead-dark">
           <tr>
-            <th>ID</th>
-            <th>category</th>
-            <th>name</th>
-            <th>price</th>
-            <th>brand</th>
-            <th>color</th>
+            <th th:replace="fragments/sorting :: sorting('id','id')">ID</th>
+            <th th:replace="fragments/sorting :: sorting('category','category')">category</th>
+            <th th:replace="fragments/sorting :: sorting('name','name')">name</th>
+            <th th:replace="fragments/sorting :: sorting('price','price')">price</th>
+            <th th:replace="fragments/sorting :: sorting('brand','brand')">brand</th>
+            <th th:replace="fragments/sorting :: sorting('color','color')">color</th>
             <th>Enabled</th>
             <th></th>
           </tr>
@@ -115,18 +121,19 @@
           entries
         </div>
         <ul class="pagination">
-          <li class="page-item" th:classappend="${pageNo==0} ? disabled">
-            <a th:href="@{/products(keyword=${keyword}, pageNo=${pageNo-1})}">Previous</a>
+          <li class="page-item" th:classappend="${currentPage==0} ? disabled">
+            <a th:href="@{/products(keyword=${keyword}, currentPage=${currentPage-1})}">Previous</a>
           </li>
 
           <li th:each="pageNumber : ${pageNumbers}" class="page-item"
-            th:classappend="${pageNumber==pageNo + 1} ? active">
-            <a th:href="@{/products(keyword=${keyword}, pageNo=${pageNumber - 1})}" class="page-link"
+            th:classappend="${pageNumber==currentPage + 1} ? active">
+            <a th:href="@{/products(keyword=${keyword}, currentPage=${pageNumber - 1})}" class="page-link"
               th:text="${pageNumber}"></a>
           </li>
 
-          <li class="page-item" th:classappend="${pageNo==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
-            <a th:href="@{/products(keyword=${keyword}, pageNo=${pageNo+1})}" class="page-link">Next</a>
+          <li class="page-item"
+            th:classappend="${currentPage==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
+            <a th:href="@{/products(keyword=${keyword}, currentPage=${currentPage+1})}" class="page-link">Next</a>
           </li>
 
         </ul>

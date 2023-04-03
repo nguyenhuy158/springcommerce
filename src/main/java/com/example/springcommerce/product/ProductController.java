@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,24 +27,34 @@ public class ProductController {
     @RequestMapping(value = "/products")
     public String showProductList(
             @RequestParam(name = "keyword", defaultValue = "") Optional<String> keyword,
-            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "0") Integer currentPage,
             @RequestParam(defaultValue = "10") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "id,asc") String[] sort,
             Model model) {
+
+        String sortField = sort[0];
+        String sortDirection = sort[1];
+        Direction direction = sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+        Order order = new Order(direction, sortField);
+        System.out.println(order);
 
         PaginatedProductResponse paginatedProductResponse;
         if (keyword.isPresent()) {
             paginatedProductResponse = service
-                    .filterBooks(keyword.get(), PageRequest.of(pageNo, pageSize, Sort.by(sortBy)));
+                    .filterBooks(keyword.get(), PageRequest.of(currentPage, pageSize, Sort.by(order)));
         } else {
             paginatedProductResponse = service
-                    .readProducts(PageRequest.of(pageNo, pageSize, Sort.by(sortBy)));
+                    .readProducts(PageRequest.of(currentPage, pageSize, Sort.by(order)));
         }
         model.addAttribute("paginatedProductResponse", paginatedProductResponse);
-        model.addAttribute("currentNumberProduct", Math.min(paginatedProductResponse.getNumberOfItems(), (pageNo
+        model.addAttribute("currentNumberProduct", Math.min(paginatedProductResponse.getNumberOfItems(), (currentPage
                 + 1) * pageSize));
+        model.addAttribute("currentPage", currentPage);
         model.addAttribute("keyword", keyword.get());
-        model.addAttribute("pageNo", pageNo);
+        model.addAttribute("pageSize", pageSize + 1);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDirection", sortDirection);
+        model.addAttribute("reverseSortDirection", sortDirection.equals("asc") ? "desc" : "asc");
 
         int totalPages = paginatedProductResponse.getNumberOfPages();
         if (totalPages > 0) {
