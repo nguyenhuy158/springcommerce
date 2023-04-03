@@ -68,6 +68,16 @@ public class ProductService {
                 .build();
     }
 
+    public PaginatedProductResponse filterBooks(String keyword, Pageable pageable) {
+        Page<Product> books = repo.findAllByNameContains(keyword, pageable);
+
+        return PaginatedProductResponse.builder()
+                .numberOfItems(books.getTotalElements())
+                .numberOfPages(books.getTotalPages())
+                .products(books.getContent())
+                .build();
+    }
+
     // public Page<Product> findPaginated(Integer currentPage, Integer pageSize,
     // String sortBy) {
 

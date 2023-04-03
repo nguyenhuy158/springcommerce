@@ -116,16 +116,17 @@
         </div>
         <ul class="pagination">
           <li class="page-item" th:classappend="${pageNo==0} ? disabled">
-            <a th:href="@{/products(pageNo=${pageNo-1})}">Previous</a>
+            <a th:href="@{/products(keyword=${keyword}, pageNo=${pageNo-1})}">Previous</a>
           </li>
 
           <li th:each="pageNumber : ${pageNumbers}" class="page-item"
             th:classappend="${pageNumber==pageNo + 1} ? active">
-            <a th:href="@{/products(pageNo=${pageNumber - 1})}" class="page-link" th:text="${pageNumber}"></a>
+            <a th:href="@{/products(keyword=${keyword}, pageNo=${pageNumber - 1})}" class="page-link"
+              th:text="${pageNumber}"></a>
           </li>
 
           <li class="page-item" th:classappend="${pageNo==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
-            <a th:href="@{/products(pageNo=${pageNo+1})}" class="page-link">Next</a>
+            <a th:href="@{/products(keyword=${keyword}, pageNo=${pageNo+1})}" class="page-link">Next</a>
           </li>
 
         </ul>

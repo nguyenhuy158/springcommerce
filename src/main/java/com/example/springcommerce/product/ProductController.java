@@ -29,21 +29,19 @@ public class ProductController {
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
             Model model) {
-        List<Product> products;
 
-        PaginatedProductResponse paginatedProductResponse = service
-                .readProducts(PageRequest.of(pageNo, pageSize, Sort.by(sortBy)));
-
+        PaginatedProductResponse paginatedProductResponse;
         if (keyword.isPresent()) {
-            // products = service.search(keyword.get());
-            // products = service.getAllProducts(pageNo, pageSize, sortBy);
-
+            paginatedProductResponse = service
+                    .filterBooks(keyword.get(), PageRequest.of(pageNo, pageSize, Sort.by(sortBy)));
         } else {
-            // products = service.getAllProducts(pageNo, pageSize, sortBy);
+            paginatedProductResponse = service
+                    .readProducts(PageRequest.of(pageNo, pageSize, Sort.by(sortBy)));
         }
         model.addAttribute("paginatedProductResponse", paginatedProductResponse);
         model.addAttribute("currentNumberProduct", Math.min(paginatedProductResponse.getNumberOfItems(), (pageNo
                 + 1) * pageSize));
+        model.addAttribute("keyword", keyword.get());
         model.addAttribute("pageNo", pageNo);
 
         int totalPages = paginatedProductResponse.getNumberOfPages();
