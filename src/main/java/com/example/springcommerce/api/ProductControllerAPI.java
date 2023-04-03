@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.springcommerce.model.Product;
+import com.example.springcommerce.product.Product;
 import com.example.springcommerce.repository.ProductRepositoryApi;
 
 @RestController
