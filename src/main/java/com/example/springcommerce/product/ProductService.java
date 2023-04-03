@@ -69,12 +69,19 @@ public class ProductService {
     }
 
     public PaginatedProductResponse filterBooks(String keyword, Pageable pageable) {
-        Page<Product> books = repo.findAllByNameContains(keyword, pageable);
-
+        Page<Product> products = repo.findAllByNameContains(keyword, pageable);
+        products.and(repo.findAllByBrandContains(keyword, pageable));
+        products.and(repo.findAllByColorContains(keyword, pageable));
+        try {
+            double parseDouble = Double.parseDouble(keyword);
+            products.and(repo.findAllByPriceEquals(parseDouble, pageable));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return PaginatedProductResponse.builder()
-                .numberOfItems(books.getTotalElements())
-                .numberOfPages(books.getTotalPages())
-                .products(books.getContent())
+                .numberOfItems(products.getTotalElements())
+                .numberOfPages(products.getTotalPages())
+                .products(products.getContent())
                 .build();
     }
 
