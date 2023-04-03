@@ -87,7 +87,7 @@
           </tr>
         </thead>
         <tbody>
-          <th:block th:each="product : ${listProducts}">
+          <th:block th:each="product : ${paginatedProductResponse.products}">
             <tr>
               <td>[[${product.id}]]</td>
               <td>[[${product.category}]]</td>
@@ -107,17 +107,36 @@
 
       <!-- paging -->
       <div class="clearfix">
-        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+        <div class="hint-text">
+          Showing
+          <b th:text="${currentNumberProduct}"></b>
+          out of
+          <b th:text="${paginatedProductResponse.getNumberOfItems()}"></b>
+          entries
+        </div>
         <ul class="pagination">
-          <li class="page-item disabled"><a href="#">Previous</a></li>
-          <li class="page-item active"><a href="#" class="page-link">1</a></li>
-          <li class="page-item"><a href="#" class="page-link">2</a></li>
-          <li class="page-item"><a href="#" class="page-link">3</a></li>
-          <li class="page-item"><a href="#" class="page-link">4</a></li>
-          <li class="page-item"><a href="#" class="page-link">5</a></li>
-          <li class="page-item"><a href="#" class="page-link">Next</a></li>
+          <li class="page-item" th:classappend="${pageNo==0} ? disabled">
+            <a th:href="@{/products(pageNo=${pageNo-1})}">Previous</a>
+          </li>
+
+          <li th:each="pageNumber : ${pageNumbers}" class="page-item"
+            th:classappend="${pageNumber==pageNo + 1} ? active">
+            <a th:href="@{/products(pageNo=${pageNumber - 1})}" class="page-link" th:text="${pageNumber}"></a>
+          </li>
+
+          <li class="page-item" th:classappend="${pageNo==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
+            <a th:href="@{/products(pageNo=${pageNo+1})}" class="page-link">Next</a>
+          </li>
+
         </ul>
       </div>
+
+      <!--phân trang-->
+      <!-- <section th:if="${productPage.totalPages > 0}" id="pagination" class="section-p1 dflex_gap">
+        <a th:each="pageNumber : ${pageNumbers}" th:href="@{/search(size=${productPage.size}, page=${pageNumber})}"
+          th:text="${pageNumber}" th:class="${pageNumber==productPage.number + 1} ? active">
+        </a>
+      </section> -->
 
     </div>
   </div>

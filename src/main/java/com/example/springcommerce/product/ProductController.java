@@ -2,8 +2,12 @@ package com.example.springcommerce.product;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,16 +24,33 @@ public class ProductController {
 
     @RequestMapping(value = "/products")
     public String showProductList(
-            @RequestParam(name = "keyword", required = false) Optional<String> keyword,
+            @RequestParam(name = "keyword", defaultValue = "") Optional<String> keyword,
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy,
             Model model) {
         List<Product> products;
 
+        PaginatedProductResponse paginatedProductResponse = service
+                .readProducts(PageRequest.of(pageNo, pageSize, Sort.by(sortBy)));
+
         if (keyword.isPresent()) {
-            products = service.search(keyword.get());
+            // products = service.search(keyword.get());
+            // products = service.getAllProducts(pageNo, pageSize, sortBy);
+
         } else {
-            products = service.listAll();
+            // products = service.getAllProducts(pageNo, pageSize, sortBy);
         }
-        model.addAttribute("listProducts", products);
+        model.addAttribute("paginatedProductResponse", paginatedProductResponse);
+        model.addAttribute("currentNumberProduct", Math.min(paginatedProductResponse.getNumberOfItems(), (pageNo
+                + 1) * pageSize));
+        model.addAttribute("pageNo", pageNo);
+
+        int totalPages = paginatedProductResponse.getNumberOfPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
         return "products";
     }
 
