@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.springcommerce.model.CartItem;
+
 @Controller
 public class ProductController {
     @Autowired
@@ -62,6 +64,24 @@ public class ProductController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
         return "products";
+    }
+
+    @GetMapping("/products/{id}")
+    public String showDetail(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+
+        model.addAttribute("cartItem", new CartItem());
+        Product product;
+        try {
+            product = service.get(id);
+            model.addAttribute("product", product);
+            model.addAttribute("pageTitle", "View product (ID: " + id + ")");
+
+            return "product_detail";
+        } catch (ProductNotFoundException e) {
+            ra.addFlashAttribute("message", e.getMessage());
+            return "redirect:/products";
+        }
+
     }
 
     @GetMapping("/products/new")

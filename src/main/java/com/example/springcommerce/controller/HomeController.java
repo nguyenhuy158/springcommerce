@@ -21,7 +21,9 @@ public class HomeController {
   }
 
   @GetMapping("/login")
-  public String viewLoginPage() {
+  public String viewLoginPage(Model model) {
+
+    System.out.println("sout " + model.toString());
     return "login";
   }
 }

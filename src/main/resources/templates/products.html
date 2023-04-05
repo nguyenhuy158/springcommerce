@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Manage Products</title>
+<head th:replace="fragments/header.html :: header('Manage Products')">
+</head>
 
+<head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" th:href="@{/style.css}">
 </head>
-
 
 <body>
   <!-- header -->
@@ -29,6 +28,7 @@
 
       </form>
     </div>
+
     <div class="row" id="filter">
       <form>
         <div class="form-group col-sm-3 col-xs-6">
@@ -64,6 +64,10 @@
     </div>
   </div>
 
+  <!--  -->
+  <!--  -->
+  <!--  -->
+  <!--  -->
   <!-- table result -->
   <!-- split -->
   <div class="container-fluid text-center">
@@ -95,7 +99,13 @@
         <tbody>
           <th:block th:each="product : ${paginatedProductResponse.products}">
             <tr>
-              <td>[[${product.id}]]</td>
+              <td>
+                <a th:href="@{/products/} + ${product.id}">
+
+                  [[${product.id}]]
+
+                </a>
+              </td>
               <td>[[${product.category}]]</td>
               <td>[[${product.name}]]</td>
               <td>[[${product.price}]]</td>
@@ -103,7 +113,10 @@
               <td>[[${product.color}]]</td>
               <td>
                 <a class="h4 mr-3" th:href="@{'/products/edit/' + ${product.id}}">Edit</a>
+                <br>
                 <a class="h4" th:href="@{'/products/delete/' + ${product.id}}">Delete</a>
+                <br>
+                <a class="h4" th:href="@{'/products/' + ${product.id}}">View</a>
               </td>
             </tr>
           </th:block>
