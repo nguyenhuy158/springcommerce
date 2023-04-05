@@ -1,6 +1,5 @@
 package com.example.springcommerce.service;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +27,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public String getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof UserPrincipal) {
-            UserDetailsImp userPrincipal = (UserDetailsImp) authentication.getPrincipal();
-            return userPrincipal.getUsername();
+        if (authentication.getPrincipal() instanceof UserDetails) {
+            return ((UserDetails) authentication.getPrincipal()).getUsername();
         }
         return null;
+    }
+
+    public UserDetailsImp getCurrentUser() {
+        String username = getCurrentUserId();
+        return userRepository.findById(username).get();
     }
 
     public void save(UserDetailsImp userDetailsImp) {
@@ -71,4 +74,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         return userDetails;
     }
+
 }

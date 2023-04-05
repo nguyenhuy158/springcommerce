@@ -43,4 +43,13 @@ public class OrderDetail {
 
     @Column(name = "Amount", nullable = false)
     private double amount;
+
+    public OrderDetail(Order order, Product product, int quanity, double price, double amount) {
+        this.order = order;
+        this.product = product;
+        this.quanity = quanity;
+        this.price = price;
+        this.amount = amount;
+    }
+
 }

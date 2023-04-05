@@ -14,25 +14,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductService {
     @Autowired
-    private ProductRepository repo;
+    private ProductRepository productRepository;
 
     @Autowired
     private ProductPagingAndSortingRepository productPagingAndSortingRepository;
 
     public List<Product> search(String keyword) {
-        return repo.search(keyword);
+        return productRepository.search(keyword);
     }
 
     public List<Product> listAll() {
-        return (List<Product>) repo.findAll();
+        return (List<Product>) productRepository.findAll();
     }
 
     public void save(Product user) {
-        repo.save(user);
+        productRepository.save(user);
     }
 
     public Product get(Integer id) throws ProductNotFoundException {
-        Optional<Product> result = repo.findById(id);
+        Optional<Product> result = productRepository.findById(id);
         if (result.isPresent()) {
             return result.get();
         }
@@ -40,11 +40,11 @@ public class ProductService {
     }
 
     public void delete(Integer id) throws ProductNotFoundException {
-        Long count = repo.countById(id);
+        Long count = productRepository.countById(id);
         if (count == null || count == 0) {
             throw new ProductNotFoundException("Could not find any users with ID " + id);
         }
-        repo.deleteById(id);
+        productRepository.deleteById(id);
     }
 
     public List<Product> getAllProducts(Integer pageNo, Integer pageSize, String sortBy) {
@@ -60,7 +60,7 @@ public class ProductService {
     }
 
     public PaginatedProductResponse readProducts(Pageable pageable) {
-        Page<Product> products = repo.findAll(pageable);
+        Page<Product> products = productRepository.findAll(pageable);
         return PaginatedProductResponse.builder()
                 .numberOfItems(products.getTotalElements())
                 .numberOfPages(products.getTotalPages())
@@ -69,12 +69,12 @@ public class ProductService {
     }
 
     public PaginatedProductResponse filterBooks(String keyword, Pageable pageable) {
-        Page<Product> products = repo.findAllByNameContains(keyword, pageable);
-        products.and(repo.findAllByBrandContains(keyword, pageable));
-        products.and(repo.findAllByColorContains(keyword, pageable));
+        Page<Product> products = productRepository.findAllByNameContains(keyword, pageable);
+        products.and(productRepository.findAllByBrandContains(keyword, pageable));
+        products.and(productRepository.findAllByColorContains(keyword, pageable));
         try {
             double parseDouble = Double.parseDouble(keyword);
-            products.and(repo.findAllByPriceEquals(parseDouble, pageable));
+            products.and(productRepository.findAllByPriceEquals(parseDouble, pageable));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -83,6 +83,10 @@ public class ProductService {
                 .numberOfPages(products.getTotalPages())
                 .products(products.getContent())
                 .build();
+    }
+
+    public Product getById(Long productId) {
+        return productRepository.findById(productId.intValue()).get();
     }
 
     // public Page<Product> findPaginated(Integer currentPage, Integer pageSize,

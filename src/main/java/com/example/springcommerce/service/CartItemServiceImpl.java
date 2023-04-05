@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.springcommerce.model.Cart;
 import com.example.springcommerce.model.CartItem;
@@ -50,4 +51,52 @@ public class CartItemServiceImpl {
 
         return list;
     }
+
+    @Transactional
+    public void clearCurrentCartByCurrentUser() {
+        List<CartItem> currentCartsByCurrentUser = getCurrentCartsByCurrentUser();
+        cartRepository.deleteByUserId(userDetailsServiceImpl.getCurrentUser());
+        currentCartsByCurrentUser.stream().forEach(
+                arg0 -> cartItemRepository.deleteById(arg0.getId()));
+
+    }
+
+    public Double getTotalPrice() {
+        List<CartItem> currentCartsByCurrentUser = getCurrentCartsByCurrentUser();
+
+        Double reduce = currentCartsByCurrentUser.stream().map(arg0 -> arg0.getProductPrice() * arg0.getQuantity())
+                .reduce(0.0D,
+                        (arg0, arg1) -> arg0 + arg1);
+        return reduce + 0.0D;
+    }
+
+    public void addCartItem(CartItem cartItem) {
+        List<CartItem> cartItems = getCurrentCartsByCurrentUser();
+
+        Optional<CartItem> itemOptional = cartItems.stream()
+                .filter(item -> item.getProductId().equals(cartItem.getProductId()))
+                .findFirst();
+
+        if (itemOptional.isPresent()) {
+            updateQuantity(itemOptional.get().getId(), cartItem.getQuantity());
+            // CartItem item = itemOptional.get();
+            // item.setQuantity(item.getQuantity() + cartItem.getQuantity());
+            cartItemRepository.save(itemOptional.get());
+        } else {
+
+            CartItem save = cartItemRepository.save(cartItem);
+            System.out.println("create new cart item: " + save);
+
+            Cart cart = new Cart();
+            cart.setCartItemId(save);
+            cart.setUserId(userDetailsServiceImpl.getCurrentUser());
+
+            System.out.println("new cart: " + cart);
+            cartRepository.save(cart);
+
+            // save(cartItem);
+            // cartItems.add(cartItem);
+        }
+    }
+
 }

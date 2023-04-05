@@ -1,7 +1,6 @@
 package com.example.springcommerce.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +22,11 @@ public class CartController {
 
   @GetMapping("")
   public String viewCart(Model model) {
-
     List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
+    Double totalPrice = cartItemServiceImpl.getTotalPrice();
     model.addAttribute("carts", carts);
+    model.addAttribute("totalPrice", totalPrice);
+
     return "cart";
   }
 
@@ -34,21 +35,7 @@ public class CartController {
     System.out.println("cart posst add");
 
     System.out.println("cart item " + cartItem.toString());
-    List<CartItem> cartItems = cartItemServiceImpl.getCurrentCarts();
-
-    Optional<CartItem> itemOptional = cartItems.stream()
-        .filter(item -> item.getProductId().equals(cartItem.getProductId()))
-        .findFirst();
-
-    if (itemOptional.isPresent()) {
-      cartItemServiceImpl.updateQuantity(itemOptional.get().getId(), cartItem.getQuantity());
-      // CartItem item = itemOptional.get();
-      // item.setQuantity(item.getQuantity() + cartItem.getQuantity());
-
-    } else {
-      cartItemServiceImpl.save(cartItem);
-      // cartItems.add(cartItem);
-    }
+    cartItemServiceImpl.addCartItem(cartItem);
     System.out.println("redirect:/products/" + cartItem.getProductId());
     return "redirect:/cart";
   }

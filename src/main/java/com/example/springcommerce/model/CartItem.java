@@ -1,7 +1,5 @@
 package com.example.springcommerce.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +28,6 @@ public class CartItem {
     private Long productId;
 
     private String productName;
-    private BigDecimal productPrice;
+    private Double productPrice;
     private int quantity;
 }

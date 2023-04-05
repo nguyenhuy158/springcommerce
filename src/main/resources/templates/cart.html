@@ -20,6 +20,39 @@
         <form id="logout" th:action="@{/logout}" method="post">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         </form>
+
+        <!-- table -->
+
+        <p>Size of list:
+            <th:block th:text="${#lists.size(carts)}">
+            </th:block>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>productId</td>
+                    <td>productName</td>
+                    <td>productPrice</td>
+                    <td>quantity</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- th:each="product : ${paginatedProductResponse.products}" -->
+                <tr th:each="cart : ${carts}">
+                    <td th:text="${cart.productId}"></td>
+                    <td th:text="${cart.productName}"></td>
+                    <td th:text="${cart.productPrice}"></td>
+                    <td th:text="${cart.quantity}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Total price: <span th:text="${totalPrice}"></span></p>
+        <form th:action="@{/checkout}" method="post">
+            <button type="submit">Checkout</button>
+        </form>
+
     </div>
 </body>
 
