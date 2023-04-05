@@ -1,11 +1,14 @@
 package com.example.springcommerce.service;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,6 +22,18 @@ import com.example.springcommerce.repository.UserDetailImpRepository;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserDetailImpRepository userRepository;
+
+    // @Autowired
+    // private AuthenticationFacade authenticationFacade;
+
+    public String getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof UserPrincipal) {
+            UserDetailsImp userPrincipal = (UserDetailsImp) authentication.getPrincipal();
+            return userPrincipal.getUsername();
+        }
+        return null;
+    }
 
     public void save(UserDetailsImp userDetailsImp) {
         userRepository.save(userDetailsImp);

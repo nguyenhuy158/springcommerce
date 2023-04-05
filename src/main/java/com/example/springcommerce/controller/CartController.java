@@ -5,12 +5,13 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.springcommerce.model.CartItem;
-import com.example.springcommerce.repository.CartItemRepository;
 import com.example.springcommerce.service.CartItemServiceImpl;
 
 @Controller
@@ -18,17 +19,22 @@ import com.example.springcommerce.service.CartItemServiceImpl;
 public class CartController {
 
   @Autowired
-  CartItemRepository cartItemRepository;
-
-  @Autowired
   CartItemServiceImpl cartItemServiceImpl;
+
+  @GetMapping("")
+  public String viewCart(Model model) {
+
+    List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
+    model.addAttribute("carts", carts);
+    return "cart";
+  }
 
   @PostMapping("/add")
   public String addToCart(@ModelAttribute("cartItem") CartItem cartItem) {
     System.out.println("cart posst add");
 
     System.out.println("cart item " + cartItem.toString());
-    List<CartItem> cartItems = cartItemRepository.findAll();
+    List<CartItem> cartItems = cartItemServiceImpl.getCurrentCarts();
 
     Optional<CartItem> itemOptional = cartItems.stream()
         .filter(item -> item.getProductId().equals(cartItem.getProductId()))
@@ -44,6 +50,6 @@ public class CartController {
       // cartItems.add(cartItem);
     }
     System.out.println("redirect:/products/" + cartItem.getProductId());
-    return "redirect:/products/" + cartItem.getProductId();
+    return "redirect:/cart";
   }
 }
