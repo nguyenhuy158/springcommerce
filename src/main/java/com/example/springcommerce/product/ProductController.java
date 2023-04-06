@@ -38,7 +38,7 @@ public class ProductController {
         String sortDirection = sort[1];
         Direction direction = sortDirection.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
         Order order = new Order(direction, sortField);
-        System.out.println(order);
+        // System.out.println(order);
 
         PaginatedProductResponse paginatedProductResponse;
         if (keyword.isPresent()) {

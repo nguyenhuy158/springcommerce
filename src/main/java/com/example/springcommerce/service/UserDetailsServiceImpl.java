@@ -33,6 +33,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return null;
     }
 
+    public UserDetailsImp createUser(UserDetailsImp user) {
+        return userRepository.save(user);
+    }
+
+    public boolean isEmailUnique(String email) {
+        UserDetailsImp user = userRepository.findById(email).get();
+        return user == null;
+    }
+
     public UserDetailsImp getCurrentUser() {
         String username = getCurrentUserId();
         return userRepository.findById(username).get();

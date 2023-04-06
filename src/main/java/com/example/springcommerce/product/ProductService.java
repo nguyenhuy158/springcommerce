@@ -76,7 +76,7 @@ public class ProductService {
             double parseDouble = Double.parseDouble(keyword);
             products.and(productRepository.findAllByPriceEquals(parseDouble, pageable));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
         }
         return PaginatedProductResponse.builder()
                 .numberOfItems(products.getTotalElements())

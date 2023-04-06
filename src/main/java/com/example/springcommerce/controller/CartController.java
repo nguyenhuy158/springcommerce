@@ -32,11 +32,11 @@ public class CartController {
 
   @PostMapping("/add")
   public String addToCart(@ModelAttribute("cartItem") CartItem cartItem) {
-    System.out.println("cart posst add");
+    // System.out.println("cart posst add");
 
-    System.out.println("cart item " + cartItem.toString());
+    // System.out.println("cart item " + cartItem.toString());
     cartItemServiceImpl.addCartItem(cartItem);
-    System.out.println("redirect:/products/" + cartItem.getProductId());
+    // System.out.println("redirect:/products/" + cartItem.getProductId());
     return "redirect:/cart";
   }
 }

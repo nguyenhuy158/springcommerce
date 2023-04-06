@@ -22,7 +22,7 @@ public class CartItemServiceImpl {
 
     public void save(CartItem cartItem) {
         CartItem cartItem2 = new CartItem(cartItem.getProductId(), cartItem.getQuantity());
-        System.out.println("cart 2: " + cartItem2);
+        // System.out.println("cart 2: " + cartItem2);
         cartItemRepository.save(cartItem2);
     }
 
@@ -85,13 +85,13 @@ public class CartItemServiceImpl {
         } else {
 
             CartItem save = cartItemRepository.save(cartItem);
-            System.out.println("create new cart item: " + save);
+            // System.out.println("create new cart item: " + save);
 
             Cart cart = new Cart();
             cart.setCartItemId(save);
             cart.setUserId(userDetailsServiceImpl.getCurrentUser());
 
-            System.out.println("new cart: " + cart);
+            // System.out.println("new cart: " + cart);
             cartRepository.save(cart);
 
             // save(cartItem);

@@ -13,6 +13,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,6 +37,7 @@ public class UserDetailsImp implements UserDetails {
 
     private String email;
 
+    @NotBlank(message = "Password is required")
     @Column(name = "Encryted_Password", length = 128, nullable = false)
     private String password;
     @Column(name = "Active", length = 1, nullable = false)
@@ -47,6 +49,10 @@ public class UserDetailsImp implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     @Override

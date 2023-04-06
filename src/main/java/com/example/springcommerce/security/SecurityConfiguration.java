@@ -2,6 +2,7 @@ package com.example.springcommerce.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,17 +27,30 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
-        http.authorizeHttpRequests()
+        // http.authorizeHttpRequests().requestMatchers("/register",
+        // "/login").permitAll();
+
+        http.authorizeHttpRequests(t -> t
+                .requestMatchers(HttpMethod.POST, "/login")
+                .permitAll()
+                .requestMatchers("/register")
+                .permitAll())
+                .authorizeHttpRequests()
                 .requestMatchers("/users").hasAnyAuthority(Role.USER.name())
                 .requestMatchers("/products").hasAnyAuthority(Role.ADMIN.name())
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .failureForwardUrl("/")
+                        .failureForwardUrl("/login?error")
+                        // .successForwardUrl("/")
                         .permitAll())
                 .logout(logout -> logout.permitAll())
                 .exceptionHandling(handling -> handling.accessDeniedPage("/403"));
+
+        // http
+        // .authorizeHttpRequests()
+        // .requestMatchers(HttpMethod.POST, "/login").permitAll();
 
         // http.authorizeHttpRequests().requestMatchers("/products").hasAnyRole(Role.USER.name(),
         // Role.ADMIN.name());
