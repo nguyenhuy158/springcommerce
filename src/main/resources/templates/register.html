@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
+<head th:replace="fragments/header.html :: header(${pageTitle})">
 </head>
 
 <body>
+    <!-- nav bar -->
+    <div class="container">
+        <nav th:replace="fragments/navbar.html :: navbar()">
+        </nav>
+    </div>
+
     <h1>Register</h1>
     <form th:object="${user}" th:action="@{/register}" method="post">
         <div>
