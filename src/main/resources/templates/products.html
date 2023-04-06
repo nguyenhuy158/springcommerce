@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header.html :: header('Manage Products')">
-</head>
-
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" th:href="@{/style.css}">
+<head th:replace="fragments/header.html :: header(${pageTitle})">
 </head>
 
 <body>
-  <!-- header -->
+  <!-- nav bar -->
+  <div class="container">
+    <nav th:replace="fragments/navbar.html :: navbar()">
+    </nav>
+  </div>
 
-  <!-- header -->
+
   <div class="container">
     <div class="row" id="search">
       <form id="search-form" th:action="@{/products}">

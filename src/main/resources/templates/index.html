@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to My Application</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<head th:replace="fragments/header.html :: header(${pageTitle})">
 </head>
 
 <body>
+    <!-- nav bar -->
+    <div class="container">
+        <nav th:replace="fragments/navbar.html :: navbar()">
+        </nav>
+    </div>
+
+
     <div class="container-fluid text-center">
+
         <h1>Welcome to my application</h1>
 
 
-        <a class="h2" th:href="@{/users}">Manage Users</a>
-        <a class="h2" th:href="@{/products}">Manage Products</a>
-
-        <!-- logout feature -->
-        <a href="javascript:document.getElementById('logout').submit()">Logout</a>
-        <form id="logout" th:action="@{/logout}" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        </form>
     </div>
+
+
 </body>
 
 </html>
