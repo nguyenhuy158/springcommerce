@@ -1,77 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-  <meta charset="UTF-8">
-  <title>[[${pageTitle}]]</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<head th:replace="fragments/header.html :: header(${pageTitle})">
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div class="text-center">
-      <h2>[[${pageTitle}]]</h2>
-    </div>
+  <!-- nav bar -->
+  <div class="container">
+    <nav th:replace="fragments/navbar.html :: navbar()">
+    </nav>
+  </div>
 
-    <div th:object="${product}" style="max-width: 500px; margin: 0 auto;">
-      <input type="hidden" th:field="*{id}">
-      <div class="border border-secondary rounded p-3">
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">E-mail:</label>
-          <div class="col-sm-8">
-            <input type="text" th:field="*{name}" class="form-control" required minlength="8" maxlength="45" />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">price:</label>
-          <div class="col-sm-8">
-            <input type="text" th:field="*{price}" class="form-control" required minlength="2" maxlength="45" />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">category:</label>
-          <div class="col-sm-8">
-            <input type="text" th:field="*{category}" class="form-control" required minlength="2" maxlength="45" />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Last Name:</label>
-          <div class="col-sm-8">
-            <input type="text" th:field="*{brand}" class="form-control" required minlength="2" maxlength="45" />
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label">Password:</label>
-          <div class="col-sm-8">
-            <input type="text" th:field="*{color}" class="form-control" required minlength="5" maxlength="15" />
-          </div>
-        </div>
-        <div class="form-group row">
-        </div>
-        <div class="text-center">
-          <button type="button" class="btn btn-primary m-2">Save</button>
-          <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+  <div class="container my-4">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="bs-component">
+            <div class="border border-secondary rounded p-3" th:object="${product}">
+              <fieldset>
+                <legend>[[${pageTitle}]]</legend>
 
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+                  <input type="text" class="form-control" th:field="*{name}" readonly>
+                </div>
 
-          <!-- add to cart -->
-          <form th:action="@{/cart/add}" th:object="${cartItem}" method="post">
-            <input type="hidden" name="productId" th:value="${product.id}" />
-            <input type="hidden" name="productPrice" th:value="${product.price}" />
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="1" />
-            <button type="submit">Add to Cart</button>
-          </form>
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                  <input type="text" class="form-control" th:field="*{price}" readonly>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                  <input type="text" class="form-control" th:field="*{category}" readonly>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                  <input type="text" class="form-control" th:field="*{brand}" readonly>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                  <input type="text" class="form-control" th:field="*{color}" readonly>
+                </div>
+
+                <div class="text-center">
+                  <!-- add to cart -->
+                  <form th:action="@{/cart/add}" th:object="${cartItem}" method="post">
+                    <div class="form-group">
+
+                      <input type="hidden" name="productId" th:value="${product.id}" />
+                      <input type="hidden" name="productPrice" th:value="${product.price}" />
+                      <label class="form-label mt-4" for="quantity">Quantity:</label>
+                      <input class="form-control" type="number" id="quantity" name="quantity" min="1" value="1" />
+
+                      <button type="submit" class="btn btn-primary my-2">Add to Cart</button>
+                    </div>
+                  </form>
+                </div>
+              </fieldset>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
 
   </div>
-  <script type="text/javascript">
-    function cancelForm() {
-      window.location = "[[@{/products}]]";
-    }
-  </script>
+
 </body>
 
 </html>

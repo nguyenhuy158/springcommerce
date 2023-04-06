@@ -11,69 +11,46 @@
         </nav>
     </div>
 
-    <h1>Register</h1>
-    <form th:object="${user}" th:action="@{/register}" method="post">
-        <div>
-            <label for="name">firstName:</label>
-            <input type="text" id="name" th:field="*{firstName}" required />
-
-        </div>
-        <div>
-            <label for="name">lastName:</label>
-            <input type="text" id="name" th:field="*{lastName}" required />
-
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="text" id="name" th:field="*{userName}" required />
-        </div>
-
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" th:field="*{password}" required />
-            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-        </div>
-        <button type="submit">Register</button>
-    </form>
-
     <!-- new -->
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="bs-component">
-                    <form>
-                        <fieldset>
-                            <legend>Sign up</legend>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="bs-component">
+                        <form th:object="${user}" th:action="@{/register}" method="post">
+                            <fieldset>
+                                <legend>Sign up</legend>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label mt-4">First Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="form-label mt-4">First Name</label>
+                                    <input th:field="*{firstName}" type="text" class="form-control"
+                                        id="exampleInputEmail1" placeholder="Enter email" required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label mt-4">Last Name</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="form-label mt-4">Last Name</label>
+                                    <input th:field="*{lastName}" type="text" class="form-control"
+                                        id="exampleInputEmail1" placeholder="Enter email" required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+                                    <input th:field="*{userName}" type="text" class="form-control"
+                                        id="exampleInputEmail1" placeholder="Enter email" required>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Password">
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                                    <input th:field="*{password}" type="password" class="form-control"
+                                        id="exampleInputPassword1" placeholder="Password" required>
+                                </div>
 
-                            <br class="mt-4">
+                                <br class="mt-4">
 
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                        </fieldset>
-                    </form>
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

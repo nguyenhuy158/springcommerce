@@ -11,57 +11,46 @@
         </nav>
     </div>
 
-    <!-- param -->
-    <div th:if="${param.error}" class="alert alert-danger">
-        Invalid username and password.
-    </div>
-    <div th:if="${param.logout}" class="alert alert-success">
-        You have been logged out.
-    </div>
-    <!-- param -->
-
     <div class="container">
-        <form class="form-signin" method="POST" th:action="@{/login}">
-            <p>
-                <label for="username" class="sr-only">Username</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required
-                    autofocus>
-            </p>
-            <p>
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password"
-                    required>
-            </p>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-        </form>
     </div>
 
     <!-- new -->
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="bs-component">
-                    <form>
-                        <fieldset>
-                            <legend>Sign in</legend>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="bs-component">
+                        <form method="post" th:action="@{/login}">
+                            <fieldset>
+                                <legend>Sign in</legend>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        placeholder="Username" required autofocus>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Password">
-                            </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="Password" required>
+                                </div>
 
-                            <br class="mt-4">
+                                <br class="mt-4">
 
-                            <button type="submit" class="btn btn-primary">Sign In</button>
-                        </fieldset>
-                    </form>
+                                <button type="submit" class="btn btn-primary">Sign In</button>
+
+                                <!-- param -->
+                                <div th:if="${param.error}" class="mt-4 alert alert-danger">
+                                    Invalid username and password.
+                                </div>
+                                <div th:if="${param.logout}" class="mt-4 alert alert-success">
+                                    You have been logged out.
+                                </div>
+                                <!-- param -->
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

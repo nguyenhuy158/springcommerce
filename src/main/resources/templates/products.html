@@ -11,155 +11,117 @@
     </nav>
   </div>
 
+  <div class="container">
+    <div class="container">
+
+      <form th:action="@{/products}" class="d-flex my-4">
+        <input name="keyword" class="form-control me-sm-2" type="search" placeholder="Search" th:value="${keyword}"
+          required>
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-secondary m-2 my-sm-0" type="button" onclick="clearSearch()">Clear</button>
+      </form>
+
+    </div>
+  </div>
 
   <div class="container">
-    <div class="row" id="search">
-      <form id="search-form" th:action="@{/products}">
-        <div class="form-group col-xs-9">
-          <input name="keyword" class="form-control" type="text" placeholder="Search" th:value="${keyword}" required />
-        </div>
-        <div class="form-group col-xs-3">
-          <button type="submit" class="btn btn-block btn-primary">Search</button>
-        </div>
-        <div class="form-group col-xs-3">
-          <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-        </div>
-
-      </form>
-    </div>
-
-    <div class="row" id="filter">
-      <form>
-        <div class="form-group col-sm-3 col-xs-6">
-          <select data-filter="make" class="filter-make filter form-control">
-            <option value="">Select Make</option>
-            <option value="">Show All</option>
-          </select>
-        </div>
-        <div class="form-group col-sm-3 col-xs-6">
-          <select data-filter="model" class="filter-model filter form-control">
-            <option value="">Select Model</option>
-            <option value="">Show All</option>
-          </select>
-        </div>
-        <div class="form-group col-sm-3 col-xs-6">
-          <select data-filter="type" class="filter-type filter form-control">
-            <option value="">Select Type</option>
-            <option value="">Show All</option>
-          </select>
-        </div>
-        <div class="form-group col-sm-3 col-xs-6">
-          <form th:action="@{/products(keyword=${keyword}, pageSize=${pageSize})}" method="POST">
-            <select data-filter="price" class="filter-price filter form-control">
-              <option value="0">Price Desc</option>
-              <option value="1">Price Asc</option>
-            </select>
-          </form>
-        </div>
-      </form>
-    </div>
-    <div class="row" id="products">
-
-    </div>
-  </div>
-
-  <!--  -->
-  <!--  -->
-  <!--  -->
-  <!--  -->
-  <!-- table result -->
-  <!-- split -->
-  <div class="container-fluid text-center">
-    <div>
-      <h2>Manage Products</h2>
-    </div>
-    <div class="m-2">
-      <a class="h3" th:href="@{/products/new}">Add New Product</a>
-    </div>
-
-    <div th:if="${message}" class="alert alert-success text-center">
-      [[${message}]]
-    </div>
-
-    <div>
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th th:replace="fragments/sorting :: sorting('id','id')">ID</th>
-            <th th:replace="fragments/sorting :: sorting('category','category')">category</th>
-            <th th:replace="fragments/sorting :: sorting('name','name')">name</th>
-            <th th:replace="fragments/sorting :: sorting('price','price')">price</th>
-            <th th:replace="fragments/sorting :: sorting('brand','brand')">brand</th>
-            <th th:replace="fragments/sorting :: sorting('color','color')">color</th>
-            <th>Enabled</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <th:block th:each="product : ${paginatedProductResponse.products}">
-            <tr>
-              <td>
-                <a th:href="@{/products/} + ${product.id}">
-
-                  [[${product.id}]]
-
-                </a>
-              </td>
-              <td>[[${product.category}]]</td>
-              <td>[[${product.name}]]</td>
-              <td>[[${product.price}]]</td>
-              <td>[[${product.brand}]]</td>
-              <td>[[${product.color}]]</td>
-              <td>
-                <a class="h4 mr-3" th:href="@{'/products/edit/' + ${product.id}}">Edit</a>
-                <br>
-                <a class="h4" th:href="@{'/products/delete/' + ${product.id}}">Delete</a>
-                <br>
-                <a class="h4" th:href="@{'/products/' + ${product.id}}">View</a>
-              </td>
-            </tr>
-          </th:block>
-
-        </tbody>
-      </table>
-
-      <!-- paging -->
-      <div class="clearfix">
-        <div class="hint-text">
-          Showing
-          <b th:text="${currentNumberProduct}"></b>
-          out of
-          <b th:text="${paginatedProductResponse.getNumberOfItems()}"></b>
-          entries
-        </div>
-        <ul class="pagination">
-          <li class="page-item" th:classappend="${currentPage==0} ? disabled">
-            <a th:href="@{/products(keyword=${keyword}, currentPage=${currentPage-1})}">Previous</a>
-          </li>
-
-          <li th:each="pageNumber : ${pageNumbers}" class="page-item"
-            th:classappend="${pageNumber==currentPage + 1} ? active">
-            <a th:href="@{/products(keyword=${keyword}, currentPage=${pageNumber - 1})}" class="page-link"
-              th:text="${pageNumber}"></a>
-          </li>
-
-          <li class="page-item"
-            th:classappend="${currentPage==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
-            <a th:href="@{/products(keyword=${keyword}, currentPage=${currentPage+1})}" class="page-link">Next</a>
-          </li>
-
-        </ul>
+    <!-- table result -->
+    <div class="container-fluid text-center">
+      <div>
+        <h2>Manage Products</h2>
+      </div>
+      <div class="m-2">
+        <a class="h3" th:href="@{/products/new}">Add New Product</a>
       </div>
 
-      <!--phân trang-->
-      <!-- <section th:if="${productPage.totalPages > 0}" id="pagination" class="section-p1 dflex_gap">
-        <a th:each="pageNumber : ${pageNumbers}" th:href="@{/search(size=${productPage.size}, page=${pageNumber})}"
-          th:text="${pageNumber}" th:class="${pageNumber==productPage.number + 1} ? active">
-        </a>
-      </section> -->
+      <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+      </div>
 
+      <div>
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th th:replace="fragments/sorting :: sorting('id','id')">ID</th>
+              <th th:replace="fragments/sorting :: sorting('category','category')">category</th>
+              <th th:replace="fragments/sorting :: sorting('name','name')">name</th>
+              <th th:replace="fragments/sorting :: sorting('price','price')">price</th>
+              <th th:replace="fragments/sorting :: sorting('brand','brand')">brand</th>
+              <th th:replace="fragments/sorting :: sorting('color','color')">color</th>
+              <th>Enabled</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <th:block th:each="product : ${paginatedProductResponse.products}">
+              <tr>
+                <td>
+                  <a th:href="@{/products/} + ${product.id}">
+
+                    [[${product.id}]]
+
+                  </a>
+                </td>
+                <td>[[${product.category}]]</td>
+                <td>[[${product.name}]]</td>
+                <td>[[${product.price}]]</td>
+                <td>[[${product.brand}]]</td>
+                <td>[[${product.color}]]</td>
+                <td>
+                  <a class="h4 mr-3" th:href="@{'/products/edit/' + ${product.id}}">Edit</a>
+                  <br>
+                  <a class="h4" th:href="@{'/products/delete/' + ${product.id}}">Delete</a>
+                  <br>
+                  <a class="h4" th:href="@{'/products/' + ${product.id}}">View</a>
+                </td>
+              </tr>
+            </th:block>
+
+          </tbody>
+        </table>
+
+        <!-- paging new -->
+        <div class="row">
+          <div class="col">
+            <div class="text-info">
+              Showing
+              <b th:text="${currentNumberProduct}"></b>
+              out of
+              <b th:text="${paginatedProductResponse.getNumberOfItems()}"></b>
+              entries
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <ul class="pagination">
+              <li class="page-item" th:classappend="${currentPage==0} ? disabled">
+                <a class="page-link"
+                  th:href="@{/products(keyword=${keyword}, currentPage=${currentPage-1})}">&laquo;</a>
+              </li>
+
+              <li th:each="pageNumber : ${pageNumbers}" class="page-item"
+                th:classappend="${pageNumber==currentPage + 1} ? active">
+                <a class="page-link" th:href="@{/products(keyword=${keyword}, currentPage=${pageNumber - 1})}"
+                  th:text="${pageNumber}"></a>
+              </li>
+
+              <li class="page-item"
+                th:classappend="${currentPage==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
+                <a class="page-link"
+                  th:href="@{/products(keyword=${keyword}, currentPage=${currentPage+1})}">&raquo;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
+
+
+
+  <!-- script -->
   <script type="text/javascript">
     function clearSearch() {
       window.location = "[[@{/products}]]";

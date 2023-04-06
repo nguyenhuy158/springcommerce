@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to My Application</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<head th:replace="fragments/header.html :: header(${pageTitle})">
 </head>
 
 <body>
+    <!-- nav bar -->
+    <div class="container">
+        <nav th:replace="fragments/navbar.html :: navbar()">
+        </nav>
+    </div>
     <div class="container-fluid text-center">
         <h1>Welcome to my application</h1>
 
