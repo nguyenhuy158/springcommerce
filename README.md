@@ -79,7 +79,7 @@ for the components, infrastructure design if any.
 
 ## Tiếng việt
   - [ ] Một lời giải thích ngắn gọn về các nguyên tắc, mô hình và thực hành phát triển phần mềm được áp dụng.
-  - [ ] Một lời giải thích ngắn gọn về cấu trúc mã nguồn.
+  - [x] Một lời giải thích ngắn gọn về cấu trúc mã nguồn.
   - [x] Các bước cần thiết để chạy ứng dụng trên máy tính địa phương.
   - [ ] Full CURL lệnh hoặc các bước chụp màn hình Postman để xác minh các API (bao gồm các đầu cuối yêu cầu đầy đủ, HTTP Headers và dữ liệu yêu cầu nếu có).
 

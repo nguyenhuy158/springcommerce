@@ -11,51 +11,56 @@
         </nav>
     </div>
 
-    <div class="container-fluid text-center">
-        <h1>Welcome to my application</h1>
+    <!-- new ui -->
+    <div class="container">
+        <div class="container">
+            <br class="my-4">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Id</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                    <!-- table-secondary -->
+                    <tr th:each="cart : ${carts}" class="table-primary">
+                        <td th:text="${cart.productId}"></td>
+                        <td th:text="${cart.productName}"></td>
+                        <td th:text="${cart.productPrice}"></td>
+                        <td th:text="${cart.quantity}"></td>
+                        <td th:text="${cart.quantity * cart.productPrice}"></td>
+                    </tr>
 
-        <a class="h2" th:href="@{/users}">Manage Users</a>
-        <a class="h2" th:href="@{/products}">Manage Products</a>
+                    <!-- total price -->
+                    <tr class="table-secondary">
+                        <td colspan="4" scope="row">Total price:</td>
+                        <td th:text="${totalPrice}"></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <!-- logout feature -->
-        <a href="javascript:document.getElementById('logout').submit()">Logout</a>
-        <form id="logout" th:action="@{/logout}" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-        </form>
+            <div class="row">
+                <div class="col">
+                    <p>Total:
+                        <th:block th:text="${#lists.size(carts)}">
+                        </th:block>
+                    </p>
+                </div>
+            </div>
 
-        <!-- table -->
-
-        <p>Size of list:
-            <th:block th:text="${#lists.size(carts)}">
-            </th:block>
-        </p>
-
-        <table>
-            <thead>
-                <tr>
-                    <td>productId</td>
-                    <td>productName</td>
-                    <td>productPrice</td>
-                    <td>quantity</td>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- th:each="product : ${paginatedProductResponse.products}" -->
-                <tr th:each="cart : ${carts}">
-                    <td th:text="${cart.productId}"></td>
-                    <td th:text="${cart.productName}"></td>
-                    <td th:text="${cart.productPrice}"></td>
-                    <td th:text="${cart.quantity}"></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p>Total price: <span th:text="${totalPrice}"></span></p>
-        <form th:action="@{/checkout}" method="post">
-            <button type="submit">Checkout</button>
-        </form>
-
+            <div class="row">
+                <div class="col">
+                    <form th:action="@{/checkout}" method="post">
+                        <button class="btn btn-primary" type="submit">Checkout</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
