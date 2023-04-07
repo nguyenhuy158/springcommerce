@@ -28,7 +28,32 @@ for the components, infrastructure design if any.
 - [x] ~~6. Readme file includes:~~
   - [ ] A brief explanation for software development principles, patterns
   and practices being applied.
+
+    
   - [ ] A brief explanation for the code structure.
+    The code structure follows the Model-View-Controller (MVC) architectural pattern, which separates the application into three main components:
+    1. Model: This component is responsible for managing the data of the application. It includes entities, repositories, and services that interact with the database.
+    ```
+    | - model
+    |   | - entities
+    |   | - repositories
+    |   | - services
+    ```
+    
+    2. View: This component is responsible for rendering the user interface of the application. It includes HTML, CSS, and JavaScript files that are served to the client's browser.
+    ```
+    | - resources
+    |   | - static
+    |   |   | - js
+    |   |   |   | - *.js
+    |   |   | - css
+    |   |   |   | - *.css
+    |   | - templates
+    |   |   | - *.html
+    ```
+
+    3. Controller: This component acts as an intermediary between the Model and View components. It receives user requests, processes them, and returns responses. It includes controllers that handle HTTP requests and map them to the appropriate service methods.
+
   - [x] All required steps in order to get the application run on a local
   computer.
     To run the application on a local computer, please follow the steps below:
