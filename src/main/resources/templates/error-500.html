@@ -1,7 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+<head th:replace="fragments/header.html :: header(${pageTitle})">
+</head>
 
 <body>
+    <!-- nav bar -->
+    <div class="container">
+        <nav th:replace="fragments/navbar.html :: navbar()">
+        </nav>
+    </div>
+
     <h1> Sorry, we couldn't find the page you were looking for. </h1>
     <p><a href="/">Go Home</a></p>
 </body>
