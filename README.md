@@ -12,14 +12,14 @@ order.~~
 pay by cash when the product got delivered.~~
 
 ## Delivery Requirements
-- [x] 1. Build a Java Spring Boot application to perform all operations
+- ~~[x] 1. Build a Java Spring Boot application to perform all operations
 stated above. The data of the application should be stored in
-MySQL or Postgres DBMS.
+MySQL or Postgres DBMS.~~
 - [ ] 2. Implementation of the following operations:
-  - Get a list of products by filtering multiple criteria including
+  - [ ] Get a list of products by filtering multiple criteria including
   category, price, brand, color.
-  - Add a product to shopping cart.
-  - Check out the order.
+  - [ ] Add a product to shopping cart.
+  - [ ] Check out the order.
 - [x] 3. Implementation of APIs to perform CRUD operations on the data of
 products, orders in the application.
 - [ ] 4. Entity-relationship diagram for the database and solution diagrams
