@@ -1,14 +1,14 @@
 # SpringCommerce
 ## Problem statement
 A small start-up named "SpringCommerce" wants to build a very simple online shopping application to sell their products. In order to get to the market quickly, they just want to build an MVP (Minimum Viable Product) version with a very limited set of functionalities:
-- ~~[x] 1. The application is simply a simple web page that shows all
+- [x] ~~1. The application is simply a simple web page that shows all
 products on which customers can filter and search for products
 based on different criteria such as product category, name, price,
 brand, color.~~
-- ~~[x] 2. If the customer finds a product that they like, they can view its
+- [x] ~~2. If the customer finds a product that they like, they can view its
 details and add it to their shopping cart and proceed to place an
 order.~~
-- ~~[x 3. No online payment is supported yet. The customer is required to
+- [x] ~~3. No online payment is supported yet. The customer is required to
 pay by cash when the product got delivered.~~
 
 ## Delivery Requirements
