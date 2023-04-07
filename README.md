@@ -12,27 +12,34 @@ order.~~
 pay by cash when the product got delivered.~~
 
 ## Delivery Requirements
-- ~~[x] 1. Build a Java Spring Boot application to perform all operations
+- [x] ~~1. Build a Java Spring Boot application to perform all operations
 stated above. The data of the application should be stored in
 MySQL or Postgres DBMS.~~
-- [ ] 2. Implementation of the following operations:
-  - [ ] Get a list of products by filtering multiple criteria including
-  category, price, brand, color.
-  - [ ] Add a product to shopping cart.
-  - [ ] Check out the order.
-- [x] 3. Implementation of APIs to perform CRUD operations on the data of
-products, orders in the application.
+- [x] ~~2. Implementation of the following operations:~~
+  - [x] ~~Get a list of products by filtering multiple criteria including
+  category, price, brand, color.~~
+  - [x] ~~Add a product to shopping cart.~~
+  - [x] ~~Check out the order.~~
+- [x] 3. ~~Implementation of APIs to perform CRUD operations on the data of
+products, orders in the application.~~
 - [ ] 4. Entity-relationship diagram for the database and solution diagrams
 for the components, infrastructure design if any.
 - [ ] 5. An acceptable amount of unit tests should be covered.
-- [ ] 6. Readme file includes:
-  - A brief explanation for software development principles, patterns
+- [x] ~~6. Readme file includes:~~
+  - [ ] A brief explanation for software development principles, patterns
   and practices being applied.
-  - A brief explanation for the code structure.
-  - All required steps in order to get the application run on a local
+  - [ ] A brief explanation for the code structure.
+  - [ ] All required steps in order to get the application run on a local
   computer.
-  - Full CURL commands or Postman snapshots to verify the APIs
+  - [ ] Full CURL commands or Postman snapshots to verify the APIs
   (include full request endpoints, HTTP Headers and request payload
   if any).
+
+  - [ ] Một lời giải thích ngắn gọn về các nguyên tắc, mô hình và thực hành phát triển phần mềm được áp dụng.
+  - [ ] Một lời giải thích ngắn gọn về cấu trúc mã nguồn.
+  - [ ] Các bước cần thiết để chạy ứng dụng trên máy tính địa phương.
+  - [ ] Full CURL lệnh hoặc các bước chụp màn hình Postman để xác minh các API (bao gồm các đầu cuối yêu cầu đầy đủ, HTTP Headers và dữ liệu yêu cầu nếu có).
+
+
   
 ## * Additional requirement: Provide security (Spring Security) for the application.
