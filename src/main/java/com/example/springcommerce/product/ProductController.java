@@ -67,7 +67,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public String showDetail(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+    public String showDetail(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
 
         model.addAttribute("cartItem", new CartItem());
         Product product;
@@ -99,7 +99,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+    public String showEditForm(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
         try {
             Product user = service.get(id);
             model.addAttribute("product", user);
@@ -113,7 +113,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/delete/{id}")
-    public String deleteUser(@PathVariable("id") Integer id, RedirectAttributes ra) {
+    public String deleteUser(@PathVariable("id") Long id, RedirectAttributes ra) {
         try {
             service.delete(id);
             ra.addFlashAttribute("message", "The product ID " + id + " has been deleted.");

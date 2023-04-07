@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findAll(Pageable pageable);
 
@@ -23,7 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     public List<Product> search(String keyword);
 
-    public Long countById(Integer id);
+    public Long countById(Long id);
 
     Page<Product> findAllByNameContains(String name, Pageable pageable);
 

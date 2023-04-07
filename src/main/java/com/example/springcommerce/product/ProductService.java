@@ -31,7 +31,7 @@ public class ProductService {
         productRepository.save(user);
     }
 
-    public Product get(Integer id) throws ProductNotFoundException {
+    public Product get(Long id) throws ProductNotFoundException {
         Optional<Product> result = productRepository.findById(id);
         if (result.isPresent()) {
             return result.get();
@@ -39,7 +39,7 @@ public class ProductService {
         throw new ProductNotFoundException("Could not find any users with ID " + id);
     }
 
-    public void delete(Integer id) throws ProductNotFoundException {
+    public void delete(Long id) throws ProductNotFoundException {
         Long count = productRepository.countById(id);
         if (count == null || count == 0) {
             throw new ProductNotFoundException("Could not find any users with ID " + id);
@@ -86,7 +86,7 @@ public class ProductService {
     }
 
     public Product getById(Long productId) {
-        return productRepository.findById(productId.intValue()).get();
+        return productRepository.findById(productId).get();
     }
 
     // public Page<Product> findPaginated(Integer currentPage, Integer pageSize,

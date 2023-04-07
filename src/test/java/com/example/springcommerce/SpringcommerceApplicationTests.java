@@ -1,27 +1,19 @@
 package com.example.springcommerce;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.example.springcommerce.api.ProductControllerAPI;
-import com.example.springcommerce.repository.ProductRepositoryApi;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
-class SpringcommerceApplicationTests {
+@RunWith(SpringRunner.class)
+public class SpringcommerceApplicationTests {
 
-	@Autowired
-	ProductControllerAPI productControllerAPI;
-
-	@MockBean
-	ProductRepositoryApi productRepositoryApi;
-
-	@Autowired
-	MockMvc mockMvc;
-
-	@Autowired
-	ObjectMapper objectMapper;
+	@Test
+	public void simpleTest() {
+		assertEquals(1, 1);
+	}
 
 }

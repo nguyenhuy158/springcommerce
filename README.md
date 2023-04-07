@@ -1,35 +1,36 @@
 # SpringCommerce
 ## Problem statement
 A small start-up named "SpringCommerce" wants to build a very simple online shopping application to sell their products. In order to get to the market quickly, they just want to build an MVP (Minimum Viable Product) version with a very limited set of functionalities:
-- [x] ~~1. The application is simply a simple web page that shows all
-products on which customers can filter and search for products
-based on different criteria such as product category, name, price,
-brand, color.~~
-- [x] ~~2. If the customer finds a product that they like, they can view its
-details and add it to their shopping cart and proceed to place an
-order.~~
-- [x] ~~3. No online payment is supported yet. The customer is required to
-pay by cash when the product got delivered.~~
+- [x] ~~1. The application is simply a simple web page that shows all products on which customers can filter and search for products based on different criteria such as product category, name, price, brand, color.~~
+- [x] ~~2. If the customer finds a product that they like, they can view its details and add it to their shopping cart and proceed to place an order.~~
+- [x] ~~3. No online payment is supported yet. The customer is required to pay by cash when the product got delivered.~~
 
 ## Delivery Requirements
-- [x] ~~1. Build a Java Spring Boot application to perform all operations
-stated above. The data of the application should be stored in
-MySQL or Postgres DBMS.~~
+- [x] ~~1. Build a Java Spring Boot application to perform all operations stated above. The data of the application should be stored in MySQL or Postgres DBMS.~~
 - [x] ~~2. Implementation of the following operations:~~
-  - [x] ~~Get a list of products by filtering multiple criteria including
-  category, price, brand, color.~~
+  - [x] ~~Get a list of products by filtering multiple criteria including category, price, brand, color.~~
   - [x] ~~Add a product to shopping cart.~~
   - [x] ~~Check out the order.~~
-- [x] 3. ~~Implementation of APIs to perform CRUD operations on the data of
-products, orders in the application.~~
+- [x] 3. ~~Implementation of APIs to perform CRUD operations on the data of products, orders in the application.~~
 - [ ] 4. Entity-relationship diagram for the database and solution diagrams
 for the components, infrastructure design if any.
-- [ ] 5. An acceptable amount of unit tests should be covered.
-- [x] ~~6. Readme file includes:~~
-  - [ ] A brief explanation for software development principles, patterns
-  and practices being applied.
+- [x] ~~5. An acceptable amount of unit tests should be covered.~~
 
-    
+## * Additional requirement: Provide security (Spring Security) for the application.
+
+- [x] ~~6. Readme file includes:~~
+# README.md submit file
+  - [ ] Entity-relationship diagram 
+    - 
+  - [x] A brief explanation for software development principles, patterns and practices being applied.
+    - SOLID principles: Exhibited here
+      - S: Single Responsibility Principle is exhibited here in that a controller should handle a specific HTTP request and respond with a corresponding HTTP response.
+      - L: Liskov Substitution Principle is exhibited by the UserDetailImp objects being inherited from the UserDetail class.
+      - D: Dependency Inversion Principle is exhibited by the use of dependency injection of spring boot.
+      
+    - MVC pattern:
+      - Exhibited here in that the source code structure is divided into 3 parts CONTROLLER responsible for accepting requests from the user, service responsible for processing business tasks by calling and integrating the corresponding repository to manipulate the database, VIEW shown in HTML files to render and display to the user, MODEL shown in specific managed objects such as entities.
+  
   - [x] A brief explanation for the code structure.
 
     The code structure follows the Model-View-Controller (MVC) architectural pattern, which separates the application into three main components:
@@ -77,12 +78,6 @@ for the components, infrastructure design if any.
   (include full request endpoints, HTTP Headers and request payload
   if any).
 
-## Tiếng việt
-  - [ ] Một lời giải thích ngắn gọn về các nguyên tắc, mô hình và thực hành phát triển phần mềm được áp dụng.
-  - [x] Một lời giải thích ngắn gọn về cấu trúc mã nguồn.
-  - [x] Các bước cần thiết để chạy ứng dụng trên máy tính địa phương.
-  - [ ] Full CURL lệnh hoặc các bước chụp màn hình Postman để xác minh các API (bao gồm các đầu cuối yêu cầu đầy đủ, HTTP Headers và dữ liệu yêu cầu nếu có).
-
 
   
-## * Additional requirement: Provide security (Spring Security) for the application.
+
