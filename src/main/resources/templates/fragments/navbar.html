@@ -29,7 +29,7 @@
                     </a>
                 </li>
 
-                <li th:if="${isLogin}" class="nav-item">
+                <li th:if="${isLogin and isAdmin == true}" class="nav-item">
                     <a class="nav-link" th:href="@{/users}">
                         Users
                     </a>

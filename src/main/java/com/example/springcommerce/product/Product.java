@@ -38,6 +38,7 @@ public class Product {
     private Double price;
     private String brand;
     private String color;
+    private String description;
 
     @Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)

@@ -78,6 +78,11 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public String showDetail(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
+
+        model.asMap().clear();
+        model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+        model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
+        model.addAttribute("pageTitle", "Product Detail");
         model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
 
         model.addAttribute("cartItem", new CartItem());
@@ -85,7 +90,7 @@ public class ProductController {
         try {
             product = service.get(id);
             model.addAttribute("product", product);
-            model.addAttribute("pageTitle", "View product (ID: " + id + ")");
+            model.addAttribute("pageTitle", product.getName());
 
             return "product_detail";
         } catch (ProductNotFoundException e) {

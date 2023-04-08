@@ -27,6 +27,7 @@ public class CartController {
   @GetMapping("")
   public String viewCart(Model model) {
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+    model.addAttribute("pageTitle", "Shopping Cart");
 
     List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
     Double totalPrice = cartItemServiceImpl.getTotalPrice();

@@ -28,6 +28,8 @@ public class HomeController {
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
     model.addAttribute("pageTitle", "Spring Commerce");
     model.addAttribute("isHome", true);
+    model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
+
     return "index";
   }
 
