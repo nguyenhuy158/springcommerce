@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.springcommerce.emun.Role;
-import com.example.springcommerce.model.UserDetailsImp;
 import com.example.springcommerce.service.UserDetailsServiceImpl;
 
 @SpringBootApplication
@@ -25,22 +24,14 @@ public class SpringcommerceApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		// add test user with Role admin and user
+		if (userDetailsServiceImpl.isUsernameUnique("ntqhuy2k2")) {
+			userDetailsServiceImpl.saveWithUsernameAndRawPassword("ntqhuy2k2", "ntqhuy2k2", Role.USER);
+		}
 
-		UserDetailsImp user = new UserDetailsImp();
-		user.setUserName("ntqhuy2k2");
-		user.setPassword(bCryptPasswordEncoder.encode("ntqhuy2k2"));
-		user.setRole(Role.USER);
-		user.setActive(true);
-
-		userDetailsServiceImpl.save(user);
-
-		UserDetailsImp admin = new UserDetailsImp();
-		admin.setUserName("admin");
-		admin.setPassword(bCryptPasswordEncoder.encode("admin"));
-		admin.setRole(Role.ADMIN);
-		admin.setActive(true);
-
-		userDetailsServiceImpl.save(admin);
+		if (userDetailsServiceImpl.isUsernameUnique("admin")) {
+			userDetailsServiceImpl.saveWithUsernameAndRawPassword("admin", "admin", Role.ADMIN);
+		}
 	}
 
 }

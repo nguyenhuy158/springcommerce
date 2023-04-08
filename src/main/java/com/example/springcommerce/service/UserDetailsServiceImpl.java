@@ -111,4 +111,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return getCurrentUser().getRole().name().equals(Role.ADMIN.name());
     }
 
+    public boolean isUsernameUnique(String username) {
+        return !userDetailImpRepository.findById(username).isPresent();
+    }
+
+    public void saveWithUsernameAndRawPassword(String usename, String password, Role role) {
+        UserDetailsImp user = new UserDetailsImp();
+        user.setUserName(usename);
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setFirstName("Huy");
+        user.setLastName("Nguyen");
+        user.setPhone("0837083700");
+        user.setAddress("19 NHT, Q7, HCM");
+        user.setRole(role);
+        user.setActive(true);
+        userDetailImpRepository.save(user);
+    }
+
 }
