@@ -12,31 +12,45 @@
             <ul class="navbar-nav me-auto">
 
                 <li th:if="${!isLogin}" class="nav-item">
-                    <a class="nav-link active" th:href="@{/login}">Sign In</a>
+                    <a th:classappend="${isSignIn} ? 'active' : ''" class="nav-link" th:href="@{/login}">
+                        Sign In
+                    </a>
                 </li>
 
                 <li th:if="${!isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/register}">Sign Up</a>
+                    <a th:classappend="${isSignUp} ? 'active' : ''" class="nav-link" th:href="@{/register}">
+                        Sign Up
+                    </a>
                 </li>
 
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/products}">Products</a>
+                    <a th:classappend="${isProduct} ? 'active' : ''" class="nav-link" th:href="@{/products}">
+                        Products
+                    </a>
                 </li>
 
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/users}">Users</a>
+                    <a class="nav-link" th:href="@{/users}">
+                        Users
+                    </a>
                 </li>
 
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/cart}">Carts</a>
+                    <a class="nav-link" th:href="@{/cart}">
+                        Carts
+                    </a>
                 </li>
 
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/history}">History</a>
+                    <a class="nav-link" th:href="@{/history}">
+                        History
+                    </a>
                 </li>
 
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/about}">About</a>
+                    <a class="nav-link" th:href="@{/about}">
+                        About
+                    </a>
                 </li>
 
                 <li th:if="${isLogin}" class="d-flex">

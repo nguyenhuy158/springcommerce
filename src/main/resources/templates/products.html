@@ -4,6 +4,11 @@
 <head th:replace="fragments/header.html :: header(${pageTitle})">
 </head>
 
+<header>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+  <link rel="stylesheet" href="/css/products.css">
+</header>
+
 <body>
   <!-- nav bar -->
   <div class="container">
@@ -119,6 +124,42 @@
     </div>
   </div>
 
+
+  <section class="section-products">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="header">
+            <h3>Featured Product</h3>
+            <h2>Popular Products</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <th:block th:each="product : ${paginatedProductResponse.products}">
+          <!-- Single Product -->
+          <div class="col-md-6 col-lg-4 col-xl-3">
+            <div id="product-4" class="single-product">
+              <div class="part-1" th:style="${'background: url(' + product.image + ') no-repeat center;'}">
+                <span class="new" th:text="${product.category}">new</span>
+                <ul>
+                  <li>
+                    <a th:href="@{/products/} + ${product.id}">
+                      <i class="fas fa-expand"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="part-2">
+                <h3 class="product-title" th:text="${product.name}"></h3>
+                <h4 class="product-price" th:text="${product.price}"></h4>
+              </div>
+            </div>
+          </div>
+        </th:block>
+      </div>
+    </div>
+  </section>
 
 
   <!-- script -->

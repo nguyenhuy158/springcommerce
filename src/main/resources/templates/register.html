@@ -22,27 +22,27 @@
                                 <legend>Sign up</legend>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="form-label mt-4">First Name</label>
-                                    <input th:field="*{firstName}" type="text" class="form-control"
-                                        id="exampleInputEmail1" placeholder="Enter email" required>
+                                    <label for="firstName" class="form-label mt-4">First Name</label>
+                                    <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                                        placeholder="First name" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="form-label mt-4">Last Name</label>
-                                    <input th:field="*{lastName}" type="text" class="form-control"
-                                        id="exampleInputEmail1" placeholder="Enter email" required>
+                                    <label for="lastName" class="form-label mt-4">Last Name</label>
+                                    <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                                        placeholder="Last name" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1" class="form-label mt-4">Username</label>
-                                    <input th:field="*{userName}" type="text" class="form-control"
-                                        id="exampleInputEmail1" placeholder="Enter email" required>
+                                    <label for="userName" class="form-label mt-4">Username</label>
+                                    <input th:field="*{userName}" type="text" class="form-control" id="userName"
+                                        placeholder="Username" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                                    <input th:field="*{password}" type="password" class="form-control"
-                                        id="exampleInputPassword1" placeholder="Password" required>
+                                    <label for="password" class="form-label mt-4">Password</label>
+                                    <input th:field="*{password}" type="password" class="form-control" id="password"
+                                        placeholder="Password" required minlength="8">
                                 </div>
 
                                 <br class="mt-4">
@@ -56,6 +56,10 @@
         </div>
     </div>
 
+    <div class="container my-4">
+        <footer th:replace="fragments/footer.html :: footer()">
+        </footer>
+    </div>
 </body>
 
 </html>

@@ -41,7 +41,7 @@ public class Product {
 
     @Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
-    private byte[] image;
+    private String image;
 
     // @Column(name = "timestamp", nullable = false, updatable = false, insertable =
     // false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

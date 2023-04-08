@@ -2,11 +2,14 @@ package com.example.springcommerce.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import com.example.springcommerce.model.Role;
@@ -28,15 +31,15 @@ public class SecurityConfiguration {
         http.csrf().disable();
 
         http.authorizeHttpRequests(t -> t
-                .requestMatchers(HttpMethod.POST, "/login")
+                // .requestMatchers(HttpMethod.POST, "/login")
+                // .permitAll()
+                .requestMatchers("/login/**")
                 .permitAll()
-                .requestMatchers("/login?error")
-                .permitAll()
-                .requestMatchers("/register")
+                .requestMatchers("/register/**")
                 .permitAll())
                 .authorizeHttpRequests()
-                .requestMatchers("/users").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products").hasAnyAuthority(Role.USER.name())
+                .requestMatchers("/users").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/new").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/edit/{id}").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/delete/{id}").hasAnyAuthority(
@@ -46,12 +49,27 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .failureForwardUrl("/login?error")
+                        .failureHandler(authenticationFailureHandler())
+                        .successHandler(authenticationSuccessHandler())
                         .permitAll())
                 .logout(logout -> logout.permitAll())
                 .exceptionHandling(handling -> handling.accessDeniedPage("/403"));
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        SimpleUrlAuthenticationSuccessHandler successHandler = new SimpleUrlAuthenticationSuccessHandler();
+        successHandler.setDefaultTargetUrl("/home");
+        return successHandler;
+    }
+
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        SimpleUrlAuthenticationFailureHandler failureHandler = new SimpleUrlAuthenticationFailureHandler();
+        failureHandler.setDefaultFailureUrl("/login?error");
+        return failureHandler;
     }
 
     @Bean

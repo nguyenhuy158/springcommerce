@@ -38,8 +38,9 @@ public class ProductController {
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id,asc") String[] sort,
             Model model) {
-
+        model.asMap().clear();
         model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+        model.addAttribute("isProduct", true);
 
         String sortField = sort[0];
         String sortDirection = sort[1];

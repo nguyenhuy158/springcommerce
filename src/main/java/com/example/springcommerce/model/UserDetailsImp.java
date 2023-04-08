@@ -35,7 +35,7 @@ public class UserDetailsImp implements UserDetails {
 
     private String lastName;
 
-    private String email;
+    // private String email;
 
     @NotBlank(message = "Password is required")
     @Column(name = "Encryted_Password", length = 128, nullable = false)

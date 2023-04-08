@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.springcommerce.model.Role;
 import com.example.springcommerce.model.UserDetailsImp;
@@ -25,18 +24,26 @@ public class HomeController {
 
   @RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
   public String index(Model model) {
+    model.asMap().clear();
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+    model.addAttribute("isHome", true);
     return "index";
   }
 
   @GetMapping("/login")
   public String viewLoginPage(Model model) {
+    model.asMap().clear();
+    model.addAttribute("isSignIn", true);
+    model.addAttribute("pageTitle", "Sign In");
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
     return "login";
   }
 
   @GetMapping("/register")
   public String showRegistrationForm(Model model) {
+    model.asMap().clear();
+    model.addAttribute("isSignUp", true);
+    model.addAttribute("pageTitle", "Sign Up");
     model.addAttribute("user", new UserDetailsImp());
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
 
@@ -44,12 +51,10 @@ public class HomeController {
   }
 
   @PostMapping("/register")
-  public String createUser(UserDetailsImp userDetailsImp, RedirectAttributes ra) {
-
+  public String createUser(UserDetailsImp userDetailsImp) {
     userDetailsImp.setRole(Role.USER);
     userDetailsImp.setActive(true);
     userDetailsImp.setPassword(bCryptPasswordEncoder.encode(userDetailsImp.getPassword()));
-
     userDetailsServiceImpl.save(userDetailsImp);
     return "redirect:/login";
   }
