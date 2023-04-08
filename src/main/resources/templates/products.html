@@ -29,7 +29,8 @@
     </div>
   </div>
 
-  <div class="container">
+  <!-- Table for admin -->
+  <div th:if="${isAdmin}" class="container">
     <!-- table result -->
     <div class="container-fluid text-center">
       <div>
@@ -85,52 +86,18 @@
           </tbody>
         </table>
 
-        <!-- paging new -->
-        <div class="row">
-          <div class="col">
-            <div class="text-info">
-              Showing
-              <b th:text="${currentNumberProduct}"></b>
-              out of
-              <b th:text="${paginatedProductResponse.getNumberOfItems()}"></b>
-              entries
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <ul class="pagination">
-              <li class="page-item" th:classappend="${currentPage==0} ? disabled">
-                <a class="page-link"
-                  th:href="@{/products(keyword=${keyword}, currentPage=${currentPage-1})}">&laquo;</a>
-              </li>
 
-              <li th:each="pageNumber : ${pageNumbers}" class="page-item"
-                th:classappend="${pageNumber==currentPage + 1} ? active">
-                <a class="page-link" th:href="@{/products(keyword=${keyword}, currentPage=${pageNumber - 1})}"
-                  th:text="${pageNumber}"></a>
-              </li>
-
-              <li class="page-item"
-                th:classappend="${currentPage==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
-                <a class="page-link"
-                  th:href="@{/products(keyword=${keyword}, currentPage=${currentPage+1})}">&raquo;</a>
-              </li>
-            </ul>
-          </div>
-        </div>
 
       </div>
     </div>
   </div>
 
-
+  <!-- Table for user -->
   <section class="section-products">
     <div class="container">
       <div class="row justify-content-center text-center">
         <div class="col-md-8 col-lg-6">
           <div class="header">
-            <h3>Featured Product</h3>
             <h2>Popular Products</h2>
           </div>
         </div>
@@ -161,6 +128,46 @@
     </div>
   </section>
 
+
+  <div class="container">
+    <!-- current/total -->
+    <div class="row">
+      <div class="col">
+        <div class="text-info text-center">
+          Showing
+          <b th:text="${currentNumberProduct}"></b>
+          out of
+          <b th:text="${paginatedProductResponse.getNumberOfItems()}"></b>
+          products.
+        </div>
+      </div>
+    </div>
+    <!-- paging -->
+    <div class="row">
+      <div class="col">
+        <ul class="pagination justify-content-center">
+          <li class="page-item" th:classappend="${currentPage==0} ? disabled">
+            <a class="page-link" th:href="@{/products(keyword=${keyword}, currentPage=${currentPage-1})}">&laquo;</a>
+          </li>
+
+          <li th:each="pageNumber : ${pageNumbers}" class="page-item"
+            th:classappend="${pageNumber==currentPage + 1} ? active">
+            <a class="page-link" th:href="@{/products(keyword=${keyword}, currentPage=${pageNumber - 1})}"
+              th:text="${pageNumber}"></a>
+          </li>
+
+          <li class="page-item"
+            th:classappend="${currentPage==paginatedProductResponse.getNumberOfPages() - 1} ? disabled">
+            <a class="page-link" th:href="@{/products(keyword=${keyword}, currentPage=${currentPage+1})}">&raquo;</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer th:replace="fragments/footer.html :: footer()">
+    </footer>
+  </div>
 
   <!-- script -->
   <script type="text/javascript">

@@ -26,6 +26,7 @@ public class HomeController {
   public String index(Model model) {
     model.asMap().clear();
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+    model.addAttribute("pageTitle", "Spring Commerce");
     model.addAttribute("isHome", true);
     return "index";
   }

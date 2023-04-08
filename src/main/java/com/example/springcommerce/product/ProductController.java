@@ -40,6 +40,8 @@ public class ProductController {
             Model model) {
         model.asMap().clear();
         model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+        model.addAttribute("pageTitle", "Product List");
+        model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
         model.addAttribute("isProduct", true);
 
         String sortField = sort[0];
