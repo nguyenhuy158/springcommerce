@@ -61,4 +61,26 @@ public class HomeController {
     userDetailsServiceImpl.save(userDetailsImp);
     return "redirect:/login";
   }
+
+  @RequestMapping(value = { "/history" }, method = RequestMethod.GET)
+  public String history(Model model) {
+    model.asMap().clear();
+    model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+    model.addAttribute("pageTitle", "History");
+    model.addAttribute("isHistory", true);
+    model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
+
+    return "history";
+  }
+
+  @RequestMapping(value = { "/about" }, method = RequestMethod.GET)
+  public String about(Model model) {
+    model.asMap().clear();
+    model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+    model.addAttribute("pageTitle", "About");
+    model.addAttribute("isAbout", true);
+    model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
+
+    return "about";
+  }
 }

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="fragments/header.html :: header(${pageTitle})">
+</head>
+
+<header>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/cart.css">
+</header>
+
+<body>
+    <!-- nav bar -->
+    <div class="container">
+        <nav th:replace="fragments/navbar.html :: navbar()">
+        </nav>
+    </div>
+
+    <!-- newest ui -->
+    <!-- new ui -->
+    <div class="container">
+        <div class="container">
+            <br class="my-4">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Id</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- table-secondary -->
+                    <tr th:each="cart : ${carts}" class="table-primary">
+                        <td th:text="${cart?.productId}"></td>
+                        <td th:text="${cart?.productName}"></td>
+                        <td th:text="${cart?.productPrice}"></td>
+                        <td th:text="${cart?.quantity}"></td>
+                        <td th:text="${cart?.quantity * cart.productPrice}"></td>
+                    </tr>
+
+                    <!-- total price -->
+                    <tr class="table-secondary">
+                        <td colspan="4" scope="row">Total price:</td>
+                        <td th:text="${totalPrice}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row">
+                <div class="col">
+                    <p>Total:
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container my-4">
+        <footer th:replace="fragments/footer.html :: footer()">
+        </footer>
+    </div>
+</body>
+
+</html>

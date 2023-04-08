@@ -30,6 +30,7 @@ public class CartController {
 
   @GetMapping("")
   public String viewCart(Model model) {
+    model.addAttribute("isCart", true);
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
     model.addAttribute("pageTitle", "Shopping Cart");
 

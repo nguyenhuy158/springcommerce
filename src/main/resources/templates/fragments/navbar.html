@@ -34,21 +34,20 @@
                         Users
                     </a>
                 </li>
-
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/cart}">
+                    <a th:classappend="${isCart} ? 'active' : ''" class="nav-link" th:href="@{/cart}">
                         Carts
                     </a>
                 </li>
 
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/history}">
+                    <a th:classappend="${isHistory} ? 'active' : ''" class="nav-link" th:href="@{/history}">
                         History
                     </a>
                 </li>
 
                 <li th:if="${isLogin}" class="nav-item">
-                    <a class="nav-link" th:href="@{/about}">
+                    <a th:classappend="${isAbout} ? 'active' : ''" class="nav-link" th:href="@{/about}">
                         About
                     </a>
                 </li>
