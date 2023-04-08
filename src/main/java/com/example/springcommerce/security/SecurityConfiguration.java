@@ -38,7 +38,6 @@ public class SecurityConfiguration {
                 .requestMatchers("/register/**")
                 .permitAll())
                 .authorizeHttpRequests()
-                .requestMatchers("/products").hasAnyAuthority(Role.USER.name())
                 .requestMatchers("/users").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/new").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/edit/{id}").hasAnyAuthority(Role.ADMIN.name())

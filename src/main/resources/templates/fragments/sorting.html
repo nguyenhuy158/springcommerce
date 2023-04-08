@@ -4,7 +4,9 @@
                 + 'page=' + ${currentPage} + '&size=' + ${pageSize}
                 + ${sortField!=null ? '&sort=' + field + ',' + (sortField == field ? reverseSortDirection : sortDirection) : ''}}">
         [[${label}]] </a>
-    <span th:if="${sortField == field}"
-        th:class="${sortDirection == 'asc' ? 'fas fa-arrow-down-short-wide' : 'fas fa-arrow-down-wide-short'}">
-    </span>
+    <i th:if="${sortField == field}"
+        th:class="${sortDirection == 'asc' ? 'fas fa-arrow-up-short-wide' : 'fas fa-arrow-down-wide-short'}">
+    </i>
+
+    <i th:if="${sortField != field}" class="fa-solid fa-sort"></i>
 </th>

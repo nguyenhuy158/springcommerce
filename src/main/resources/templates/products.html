@@ -6,6 +6,9 @@
 
 <header>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/products.css">
 </header>
 
@@ -45,40 +48,48 @@
       </div>
 
       <div>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover">
           <thead class="thead-dark">
             <tr>
-              <th th:replace="fragments/sorting :: sorting('id','id')">ID</th>
-              <th th:replace="fragments/sorting :: sorting('category','category')">category</th>
-              <th th:replace="fragments/sorting :: sorting('name','name')">name</th>
-              <th th:replace="fragments/sorting :: sorting('price','price')">price</th>
-              <th th:replace="fragments/sorting :: sorting('brand','brand')">brand</th>
-              <th th:replace="fragments/sorting :: sorting('color','color')">color</th>
-              <th>Enabled</th>
-              <th></th>
+              <th class="col" th:replace="fragments/sorting :: sorting('id','Id')"> </th>
+              <th class="col" th:replace="fragments/sorting :: sorting('image','Image')"> </th>
+              <th class="col" th:replace="fragments/sorting :: sorting('category','Category')"> </th>
+              <th class="col" th:replace="fragments/sorting :: sorting('name','Name')"> </th>
+              <th class="col" th:replace="fragments/sorting :: sorting('price','Price')"> </th>
+              <th class="col" th:replace="fragments/sorting :: sorting('brand','Brand')"> </th>
+              <th class="col" th:replace="fragments/sorting :: sorting('color','Color')"> </th>
+              <th class="col">Handler</th>
             </tr>
           </thead>
           <tbody>
-            <th:block th:each="product : ${paginatedProductResponse.products}">
-              <tr>
-                <td>
+            <th:block th:each="product, idx : ${paginatedProductResponse.products}">
+              <tr th:classappend="${idx.index % 2 == 0} ? 'table-active' : 'table-light'">
+                <td class="align-middle vertical-center">
                   <a th:href="@{/products/} + ${product.id}">
-
                     [[${product.id}]]
-
                   </a>
                 </td>
-                <td>[[${product.category}]]</td>
-                <td>[[${product.name}]]</td>
-                <td>[[${product.price}]]</td>
-                <td>[[${product.brand}]]</td>
-                <td>[[${product.color}]]</td>
                 <td>
-                  <a class="h4 mr-3" th:href="@{'/products/edit/' + ${product.id}}">Edit</a>
-                  <br>
-                  <a class="h4" th:href="@{'/products/delete/' + ${product.id}}">Delete</a>
-                  <br>
-                  <a class="h4" th:href="@{'/products/' + ${product.id}}">View</a>
+                  <img width="100" height="100"
+                    th:src="${product.image != null ? product.image : 'https://placehold.co/100x100/png'}" alt="">
+                </td>
+                <td class="align-middle vertical-center text-truncate">[[${product.category}]]</td>
+                <td class="align-middle vertical-center text-truncate">[[${product.name}]]</td>
+                <td class="align-middle vertical-center text-truncate">[[${product.price}]]</td>
+                <td class="align-middle vertical-center text-truncate">[[${product.brand}]]</td>
+                <td class="align-middle vertical-center text-truncate">[[${product.color}]]</td>
+                <td class="align-middle">
+                  <a class="h4 p-1" th:href="@{'/products/edit/' + ${product.id}}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </a>
+
+                  <a class="h4 p-1" th:href="@{'/products/delete/' + ${product.id}}">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+
+                  <a class="h4 p-1" th:href="@{'/products/' + ${product.id}}">
+                    <i class="fa-solid fa-eye"></i>
+                  </a>
                 </td>
               </tr>
             </th:block>
@@ -93,7 +104,7 @@
   </div>
 
   <!-- Table for user -->
-  <section class="section-products">
+  <section th:if="${!isAdmin}" class="section-products">
     <div class="container">
       <div class="row justify-content-center text-center">
         <div class="col-md-8 col-lg-6">
