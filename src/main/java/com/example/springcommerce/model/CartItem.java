@@ -28,6 +28,12 @@ public class CartItem {
     private Long productId;
 
     private String productName;
+
+    private String image;
+
+    private String color;
+
     private Double productPrice;
+
     private int quantity;
 }

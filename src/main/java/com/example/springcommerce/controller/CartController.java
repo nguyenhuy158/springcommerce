@@ -1,6 +1,10 @@
 package com.example.springcommerce.controller;
 
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +35,13 @@ public class CartController {
 
     List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
     Double totalPrice = cartItemServiceImpl.getTotalPrice();
+
+    model.addAttribute("currentUser", userDetailsServiceImpl.getCurrentUser());
+    model.addAttribute("cartId", ThreadLocalRandom.current().nextInt(1000, 10000));
+    model.addAttribute("cartDate", DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDate.now()));
     model.addAttribute("carts", carts);
-    model.addAttribute("totalPrice", totalPrice);
+    model.addAttribute("subTotalPrice", new DecimalFormat("###,###").format(totalPrice));
+    model.addAttribute("totalPrice", new DecimalFormat("###,###").format(totalPrice + 20000));
 
     return "cart";
   }

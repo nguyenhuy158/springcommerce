@@ -5,6 +5,10 @@
 </head>
 
 <header>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/cart.css">
 </header>
 
@@ -68,30 +72,36 @@
     </div>
 
     <!-- newest ui -->
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="container">
             <!-- Title -->
             <div class="d-flex justify-content-between align-items-center py-3">
-                <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #16123222</h2>
+                <h2 class="h5 mb-0"><a href="#" class="text-muted"></a> Order #[[${cartId}]]</h2>
             </div>
 
             <!-- Main content -->
             <div class="row">
+                <!-- Product list -->
                 <div class="col-lg-8">
                     <!-- Details -->
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="mb-3 d-flex justify-content-between">
+
                                 <div>
-                                    <span class="me-3">22-11-2021</span>
-                                    <span class="me-3">#16123222</span>
-                                    <span class="me-3">Visa -1234</span>
-                                    <span class="badge rounded-pill bg-info">SHIPPING</span>
+                                    <span class="me-3">[[${cartDate}]]</span>
+                                    <span class="badge rounded-pill bg-info">
+                                        Payment by Cash
+                                    </span>
                                 </div>
+
                                 <div class="d-flex">
-                                    <button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text"><i
-                                            class="bi bi-download"></i> <span class="text">Invoice</span></button>
+                                    <button class="btn btn-link p-0 me-3 d-none d-lg-block btn-icon-text">
+                                        <i class="fa-solid fa-print"></i>
+                                        <span class="text" onclick="window.print()">Print</span>
+                                    </button>
+
                                     <div class="dropdown">
                                         <button class="btn btn-link p-0 text-muted" type="button"
                                             data-bs-toggle="dropdown">
@@ -106,118 +116,104 @@
                                         </ul>
                                     </div>
                                 </div>
+
                             </div>
+
+                            <!-- table products -->
                             <table class="table table-borderless">
                                 <tbody>
-                                    <tr>
+                                    <tr th:each="cart : ${carts}">
                                         <td>
                                             <div class="d-flex mb-2">
                                                 <div class="flex-shrink-0">
-                                                    <img src="https://www.bootdey.com/image/280x280/87CEFA/000000"
+                                                    <img th:src="${cart.image != null ? cart.image : 'https://placehold.co/35x35/png'}"
                                                         alt="" width="35" class="img-fluid">
                                                 </div>
                                                 <div class="flex-lg-grow-1 ms-3">
-                                                    <h6 class="small mb-0"><a href="#" class="text-reset">Wireless
-                                                            Headphones with Noise Cancellation Tru Bass Bluetooth
-                                                            HiFi</a>
+                                                    <h6 class="small mb-0"><a href="#" class="text-reset">
+                                                            [[${cart.productName}]]
+                                                        </a>
                                                     </h6>
-                                                    <span class="small">Color: Black</span>
+                                                    <span class="small">Color: [[${cart.color}]]</span>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>1</td>
-                                        <td class="text-end">$79.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex mb-2">
-                                                <div class="flex-shrink-0">
-                                                    <img src="https://www.bootdey.com/image/280x280/FF69B4/000000"
-                                                        alt="" width="35" class="img-fluid">
-                                                </div>
-                                                <div class="flex-lg-grow-1 ms-3">
-                                                    <h6 class="small mb-0"><a href="#" class="text-reset">Smartwatch
-                                                            IP68
-                                                            Waterproof GPS and Bluetooth Support</a></h6>
-                                                    <span class="small">Color: White</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>1</td>
-                                        <td class="text-end">$79.99</td>
+                                        <td>Quantity: [[${cart.quantity}]]</td>
+                                        <td class="text-end">[[${cart.quantity * cart.productPrice}]] VND</td>
                                     </tr>
                                 </tbody>
+
                                 <tfoot>
                                     <tr>
                                         <td colspan="2">Subtotal</td>
-                                        <td class="text-end">$159,98</td>
+                                        <td class="text-end">[[${subTotalPrice}]] VND</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">Shipping</td>
-                                        <td class="text-end">$20.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Discount (Code: NEWYEAR)</td>
-                                        <td class="text-danger text-end">-$10.00</td>
+                                        <td class="text-end">20,000 VND</td>
                                     </tr>
                                     <tr class="fw-bold">
                                         <td colspan="2">TOTAL</td>
-                                        <td class="text-end">$169,98</td>
+                                        <td class="text-end">[[${totalPrice}]] VND</td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
                     </div>
-                    <!-- Payment -->
+
+                    <!-- Check out -->
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <h3 class="h6">Payment Method</h3>
-                                    <p>Visa -1234 <br>
-                                        Total: $169,98 <span class="badge bg-success rounded-pill">PAID</span></p>
-                                </div>
-                                <div class="col-lg-6">
-                                    <h3 class="h6">Billing address</h3>
-                                    <address>
-                                        <strong>John Doe</strong><br>
-                                        1355 Market St, Suite 900<br>
-                                        San Francisco, CA 94103<br>
-                                        <abbr title="Phone">P:</abbr> (123) 456-7890
-                                    </address>
+                                <div class="col-lg-10"> </div>
+                                <div class="col-lg-1">
+                                    <form th:action="@{/checkout}" method="post">
+                                        <button class="btn btn-primary" type="submit">Checkout</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
                 <div class="col-lg-4">
-                    <!-- Customer Notes -->
+                    <!-- Shop Notes -->
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="h6">Customer Notes</h3>
-                            <p>Sed enim, faucibus litora velit vestibulum habitasse. Cras lobortis cum sem aliquet
-                                mauris
-                                rutrum. Sollicitudin. Morbi, sem tellus vestibulum porttitor.</p>
+                            <h3 class="h6">Shop Notes</h3>
+                            <p>
+                                At the moment, the shop only supports payment via COD. In the future, customers will be
+                                able to make payments via online banking. We apologize for any inconvenience this may
+                                cause.
+                            </p>
                         </div>
                     </div>
+
                     <div class="card mb-4">
                         <!-- Shipping information -->
                         <div class="card-body">
                             <h3 class="h6">Shipping Information</h3>
-                            <strong>FedEx</strong>
-                            <span><a href="#" class="text-decoration-underline" target="_blank">FF1234567890</a> <i
-                                    class="bi bi-box-arrow-up-right"></i> </span>
+                            <span>
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            <strong>COD</strong>
+
                             <hr>
+
                             <h3 class="h6">Address</h3>
                             <address>
-                                <strong>John Doe</strong><br>
-                                1355 Market St, Suite 900<br>
-                                San Francisco, CA 94103<br>
-                                <abbr title="Phone">P:</abbr> (123) 456-7890
+                                <strong>[[${currentUser.lastName + ' ' + currentUser.firstName}]]</strong>
+                                <br>
+                                [[${currentUser.address}]]
+                                <br>
+                                <abbr title="Phone">Phone:</abbr> [[${currentUser.phone}]]
                             </address>
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>

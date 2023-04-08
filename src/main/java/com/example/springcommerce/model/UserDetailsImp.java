@@ -35,6 +35,10 @@ public class UserDetailsImp implements UserDetails {
 
     private String lastName;
 
+    private String address;
+
+    private String phone;
+
     // private String email;
 
     @NotBlank(message = "Password is required")
