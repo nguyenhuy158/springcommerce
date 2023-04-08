@@ -11,11 +11,33 @@
         </nav>
     </div>
 
+    <div class="container">
 
-    <div class="container-fluid text-center">
-        <h1>checkout success</h1>
+        <div class="row text-center">
+            <div class="col mx-auto my-3">
+                <div class="my-5">
+                    <div class="card-body">
+                        <h1 class="card-title">Checkout success</h1>
+                        <br class="my-1">
+                        <p class="card-text">
+                            Your purchase request has been received.
+                            <br />
+                            We will be in touch with you shortly!
+                        </p>
 
+                        <a th:href="@{/products}">
+                            <button type="button" class="btn btn-link">Product List</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <footer th:replace="fragments/footer.html :: footer()">
+        </footer>
     </div>
+
 </body>
 
 </html>
