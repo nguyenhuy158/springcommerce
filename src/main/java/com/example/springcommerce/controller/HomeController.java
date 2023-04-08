@@ -17,34 +17,31 @@ import com.example.springcommerce.service.UserDetailsServiceImpl;
 @Controller
 public class HomeController {
 
+  @Autowired
+  private UserDetailsServiceImpl userDetailsServiceImpl;
+
+  @Autowired
+  private BCryptPasswordEncoder bCryptPasswordEncoder;
+
   @RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
   public String index(Model model) {
-    System.out.println("log log");
+    model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
     return "index";
-  }
-
-  @RequestMapping(value = { "/demo" }, method = RequestMethod.POST)
-  public String demo(Model model) {
-    return "demo";
   }
 
   @GetMapping("/login")
   public String viewLoginPage(Model model) {
+    model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
     return "login";
   }
 
   @GetMapping("/register")
   public String showRegistrationForm(Model model) {
     model.addAttribute("user", new UserDetailsImp());
+    model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
 
     return "register";
   }
-
-  @Autowired
-  private UserDetailsServiceImpl userDetailsServiceImpl;
-
-  @Autowired
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
   @PostMapping("/register")
   public String createUser(UserDetailsImp userDetailsImp, RedirectAttributes ra) {

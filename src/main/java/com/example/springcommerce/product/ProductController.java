@@ -16,23 +16,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.springcommerce.model.CartItem;
+import com.example.springcommerce.service.UserDetailsServiceImpl;
 
 @Controller
 public class ProductController {
     @Autowired
     private ProductService service;
 
-    @RequestMapping(value = "/products")
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
+
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
     public String showProductList(
             @RequestParam(name = "keyword", defaultValue = "") Optional<String> keyword,
             @RequestParam(defaultValue = "0") Integer currentPage,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id,asc") String[] sort,
             Model model) {
+
+        model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
 
         String sortField = sort[0];
         String sortDirection = sort[1];
@@ -68,6 +75,7 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public String showDetail(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
+        model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
 
         model.addAttribute("cartItem", new CartItem());
         Product product;
@@ -86,6 +94,8 @@ public class ProductController {
 
     @GetMapping("/products/new")
     public String showNewForm(Model model) {
+        model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+
         model.addAttribute("product", new Product());
         model.addAttribute("pageTitle", "Add New Product");
         return "product_form";
@@ -100,6 +110,8 @@ public class ProductController {
 
     @GetMapping("/products/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
+        model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+
         try {
             Product user = service.get(id);
             model.addAttribute("product", user);

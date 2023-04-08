@@ -35,14 +35,18 @@ public class SecurityConfiguration {
                 .requestMatchers("/register")
                 .permitAll())
                 .authorizeHttpRequests()
-                .requestMatchers("/users").hasAnyAuthority(Role.USER.name())
-                .requestMatchers("/products").hasAnyAuthority(Role.ADMIN.name())
+                .requestMatchers("/users").hasAnyAuthority(Role.ADMIN.name())
+                .requestMatchers("/products").hasAnyAuthority(Role.USER.name())
+                .requestMatchers("/products/new").hasAnyAuthority(Role.ADMIN.name())
+                .requestMatchers("/products/edit/{id}").hasAnyAuthority(Role.ADMIN.name())
+                .requestMatchers("/products/delete/{id}").hasAnyAuthority(
+                        Role.ADMIN.name())
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(login -> login
                         .loginPage("/login")
                         .failureForwardUrl("/login?error")
-                        // .successForwardUrl("/")
                         .permitAll())
                 .logout(logout -> logout.permitAll())
                 .exceptionHandling(handling -> handling.accessDeniedPage("/403"));
@@ -55,21 +59,4 @@ public class SecurityConfiguration {
         return (web) -> web.ignoring().requestMatchers("/images/**", "/css/**", "/js/**",
                 "/webjars/**");
     }
-
-    // private final JwtService jwtService;
-    // @Override
-    // protected void doFilterInternal(
-    // @NonNull HttpServletRequest request,
-    // @NonNull HttpServletResponse response,
-    // @NonNull FilterChain filterChain) throws ServletException, IOException {
-    // final String authorization = request.getHeader("Authorization");
-    // final String jwt;
-    // final String email;
-    // if (authorization == null || authorization.startsWith("Bearer ")) {
-    // filterChain.doFilter(request, response);
-    // return;
-    // }
-    // jwt = authorization.substring(7);
-    //
-    // }
 }

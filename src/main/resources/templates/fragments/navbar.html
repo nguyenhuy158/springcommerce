@@ -11,35 +11,35 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
 
-                <li class="nav-item">
+                <li th:if="${!isLogin}" class="nav-item">
                     <a class="nav-link active" th:href="@{/login}">Sign In</a>
                 </li>
 
-                <li class="nav-item">
+                <li th:if="${!isLogin}" class="nav-item">
                     <a class="nav-link" th:href="@{/register}">Sign Up</a>
                 </li>
 
-                <li class="nav-item">
+                <li th:if="${isLogin}" class="nav-item">
                     <a class="nav-link" th:href="@{/products}">Products</a>
                 </li>
 
-                <li class="nav-item">
+                <li th:if="${isLogin}" class="nav-item">
                     <a class="nav-link" th:href="@{/users}">Users</a>
                 </li>
 
-                <li class="nav-item">
+                <li th:if="${isLogin}" class="nav-item">
                     <a class="nav-link" th:href="@{/cart}">Carts</a>
                 </li>
 
-                <li class="nav-item">
+                <li th:if="${isLogin}" class="nav-item">
                     <a class="nav-link" th:href="@{/history}">History</a>
                 </li>
 
-                <li class="nav-item">
+                <li th:if="${isLogin}" class="nav-item">
                     <a class="nav-link" th:href="@{/about}">About</a>
                 </li>
 
-                <li class="d-flex">
+                <li th:if="${isLogin}" class="d-flex">
                     <!-- logout feature -->
                     <a class="nav-link" href="javascript:document.getElementById('logout').submit()">
                         Logout

@@ -2,6 +2,7 @@ package com.example.springcommerce.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.springcommerce.model.UserDetailsImp;
@@ -20,7 +22,7 @@ import com.example.springcommerce.repository.UserDetailImpRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private UserDetailImpRepository userRepository;
+    private UserDetailImpRepository userDetailImpRepository;
 
     // @Autowired
     // private AuthenticationFacade authenticationFacade;
@@ -34,27 +36,30 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public UserDetailsImp createUser(UserDetailsImp user) {
-        return userRepository.save(user);
+        return userDetailImpRepository.save(user);
     }
 
     public boolean isEmailUnique(String email) {
-        UserDetailsImp user = userRepository.findById(email).get();
+        UserDetailsImp user = userDetailImpRepository.findById(email).get();
         return user == null;
     }
 
     public UserDetailsImp getCurrentUser() {
         String username = getCurrentUserId();
-        return userRepository.findById(username).get();
+        if (username == null) {
+            return null;
+        }
+        return userDetailImpRepository.findById(username).get();
     }
 
     public void save(UserDetailsImp userDetailsImp) {
-        userRepository.save(userDetailsImp);
+        userDetailImpRepository.save(userDetailsImp);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserDetailsImp user = userRepository.findById(username).get();
+        UserDetailsImp user = userDetailImpRepository.findById(username).get();
         System.out.println("Account= " + user);
 
         if (user == null) {
@@ -82,6 +87,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 credentialsNonExpired, accountNonLocked, grantList);
 
         return userDetails;
+    }
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public boolean login(String username, String password) {
+        Optional<UserDetailsImp> userByUsername = userDetailImpRepository.findById(username);
+        if (userByUsername.isPresent()) {
+            return userByUsername.get().getPassword()
+                    .equals(bCryptPasswordEncoder.encode(password));
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isLogin() {
+        return getCurrentUser() != null;
     }
 
 }

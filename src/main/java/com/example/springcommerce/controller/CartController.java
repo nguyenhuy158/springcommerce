@@ -12,16 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.springcommerce.model.CartItem;
 import com.example.springcommerce.service.CartItemServiceImpl;
+import com.example.springcommerce.service.UserDetailsServiceImpl;
 
 @Controller
 @RequestMapping("/cart")
 public class CartController {
 
   @Autowired
+  private UserDetailsServiceImpl userDetailsServiceImpl;
+
+  @Autowired
   CartItemServiceImpl cartItemServiceImpl;
 
   @GetMapping("")
   public String viewCart(Model model) {
+    model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+
     List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
     Double totalPrice = cartItemServiceImpl.getTotalPrice();
     model.addAttribute("carts", carts);
@@ -32,11 +38,7 @@ public class CartController {
 
   @PostMapping("/add")
   public String addToCart(@ModelAttribute("cartItem") CartItem cartItem) {
-    // System.out.println("cart posst add");
-
-    // System.out.println("cart item " + cartItem.toString());
     cartItemServiceImpl.addCartItem(cartItem);
-    // System.out.println("redirect:/products/" + cartItem.getProductId());
     return "redirect:/cart";
   }
 }
