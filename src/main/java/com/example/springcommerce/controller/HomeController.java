@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.springcommerce.model.Role;
+import com.example.springcommerce.emun.Role;
 import com.example.springcommerce.model.UserDetailsImp;
 import com.example.springcommerce.service.UserDetailsServiceImpl;
 

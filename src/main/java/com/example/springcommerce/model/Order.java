@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.example.springcommerce.product.Product;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.example.springcommerce.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;

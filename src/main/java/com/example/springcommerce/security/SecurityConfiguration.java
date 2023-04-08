@@ -12,7 +12,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.example.springcommerce.model.Role;
+import com.example.springcommerce.emun.Role;
 
 import lombok.RequiredArgsConstructor;
 

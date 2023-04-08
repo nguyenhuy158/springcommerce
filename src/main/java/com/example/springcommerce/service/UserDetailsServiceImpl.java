@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.springcommerce.model.Role;
+import com.example.springcommerce.emun.Role;
 import com.example.springcommerce.model.UserDetailsImp;
 import com.example.springcommerce.repository.UserDetailImpRepository;
 

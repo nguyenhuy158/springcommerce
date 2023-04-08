@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.example.springcommerce.model.Role;
+import com.example.springcommerce.emun.Role;
 import com.example.springcommerce.model.UserDetailsImp;
 import com.example.springcommerce.service.UserDetailsServiceImpl;
 
