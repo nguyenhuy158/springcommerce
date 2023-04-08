@@ -22,7 +22,11 @@ public class UserController {
 
     @GetMapping("/users")
     public String showUserList(Model model) {
+        model.asMap().clear();
         model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+        model.addAttribute("pageTitle", "User List");
+        model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
+        model.addAttribute("isUser", true);
 
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers", listUsers);

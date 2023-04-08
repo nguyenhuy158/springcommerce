@@ -30,7 +30,7 @@
                 </li>
 
                 <li th:if="${isLogin and isAdmin == true}" class="nav-item">
-                    <a class="nav-link" th:href="@{/users}">
+                    <a th:classappend="${isUser} ? 'active' : ''" class="nav-link" th:href="@{/users}">
                         Users
                     </a>
                 </li>
