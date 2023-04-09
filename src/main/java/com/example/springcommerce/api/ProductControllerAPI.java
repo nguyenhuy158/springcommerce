@@ -66,7 +66,8 @@ public class ProductControllerAPI {
                             product.getCategory(),
                             product.getName(),
                             product.getPrice(),
-                            product.getBrand(), product.getColor()));
+                            product.getBrand(),
+                            product.getColor()));
             return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -97,7 +98,7 @@ public class ProductControllerAPI {
     public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
         try {
             productRepositoryApi.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -107,7 +108,7 @@ public class ProductControllerAPI {
     public ResponseEntity<HttpStatus> deleteAllTutorials() {
         try {
             productRepositoryApi.deleteAll();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

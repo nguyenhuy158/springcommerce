@@ -31,8 +31,8 @@ public class SecurityConfiguration {
         http.csrf().disable();
 
         http.authorizeHttpRequests(t -> t
-                // .requestMatchers(HttpMethod.POST, "/login")
-                // .permitAll()
+                .requestMatchers("/api/**")
+                .permitAll()
                 .requestMatchers("/login/**")
                 .permitAll()
                 .requestMatchers("/register/**")
@@ -42,8 +42,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/users").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/new").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/edit/{id}").hasAnyAuthority(Role.ADMIN.name())
-                .requestMatchers("/products/delete/{id}").hasAnyAuthority(
-                        Role.ADMIN.name())
+                .requestMatchers("/products/delete/{id}").hasAnyAuthority(Role.ADMIN.name())
 
                 .anyRequest().authenticated()
                 .and()

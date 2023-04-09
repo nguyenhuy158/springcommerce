@@ -42,7 +42,7 @@ public class ProductService {
     public void delete(Long id) throws ProductNotFoundException {
         Long count = productRepository.countById(id);
         if (count == null || count == 0) {
-            throw new ProductNotFoundException("Could not find any users with ID " + id);
+            throw new ProductNotFoundException("Could not find any products with ID " + id);
         }
         productRepository.deleteById(id);
     }

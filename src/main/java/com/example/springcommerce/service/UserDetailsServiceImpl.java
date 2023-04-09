@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import com.example.springcommerce.emun.Role;
 import com.example.springcommerce.model.UserDetailsImp;
 import com.example.springcommerce.repository.UserDetailImpRepository;
+import com.example.springcommerce.user.UserNotFoundException;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -54,6 +55,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     public void save(UserDetailsImp userDetailsImp) {
+        userDetailsImp.setPassword(bCryptPasswordEncoder.encode(userDetailsImp.getPassword()));
         userDetailImpRepository.save(userDetailsImp);
     }
 
@@ -126,6 +128,32 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         user.setRole(role);
         user.setActive(true);
         userDetailImpRepository.save(user);
+    }
+
+    public List<UserDetailsImp> getAllUses() {
+        String currentUserId = getCurrentUserId();
+        return userDetailImpRepository
+                .findAll()
+                .stream()
+                .filter(
+                        arg0 -> !arg0.getUserName().equals(currentUserId))
+                .toList();
+    }
+
+    public void delete(String usename) throws UserNotFoundException {
+        Long count = userDetailImpRepository.countByUserName(usename);
+        if (count == null || count == 0) {
+            throw new UserNotFoundException("Could not find any users with ID " + usename);
+        }
+        userDetailImpRepository.deleteById(usename);
+    }
+
+    public UserDetailsImp get(String usename) throws UserNotFoundException {
+        Optional<UserDetailsImp> result = userDetailImpRepository.findById(usename);
+        if (result.isPresent()) {
+            return result.get();
+        }
+        throw new UserNotFoundException("Could not find any users with ID " + usename);
     }
 
 }

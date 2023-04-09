@@ -21,7 +21,43 @@
         </nav>
     </div>
 
-    <div class="container">
+
+    <div th:if="${isAdmin}" class="container">
+        <table class="w-100 table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Order Date</th>
+                    <th>Usename</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Handler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="order : ${allOrders}">
+                    <tr>
+                        <td>[[${order.id}]]</td>
+                        <td>[[${order.orderDate}]]</td>
+                        <td>[[${order.fullName}]]</td>
+                        <td>[[${order.phone}]]</td>
+                        <td>[[${order.address}]]</td>
+                        <td>
+                            <a class="h4 text-decoration-none" th:href="@{'/orders/delete/' + ${order.id}}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </th:block>
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+    <div th:if="${isAdmin == false}" class="container">
         <div class="container py-5 ">
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -58,7 +94,7 @@
                                     <div class="col-4">[[${product.name}]]</div>
                                     <div class="col-5">Quantity: [[${order?.orderDetails?.get(idx.index)?.quanity}]]
                                     </div>
-                                    <div class="col-3">Price: [[${product?.price.toString().format('###,###,###.0')}]]
+                                    <div class="col-3">Price: [[${product?.price}]]
                                         VND
                                     </div>
 
@@ -81,6 +117,8 @@
 
         </div>
     </div>
+
+
 
     <div class="container my-4">
         <footer th:replace="fragments/footer.html :: footer()">

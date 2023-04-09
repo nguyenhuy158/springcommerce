@@ -72,7 +72,10 @@
                             <table class="table table-borderless">
                                 <tbody>
                                     <tr th:each="cart : ${carts}">
-                                        <td>
+                                        <td class="align-middle">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </td>
+                                        <td class="align-middle">
                                             <div class="d-flex mb-2">
                                                 <div class="flex-shrink-0">
                                                     <img th:src="${cart.image != null ? cart.image : 'https://placehold.co/35x35/png'}"
@@ -87,22 +90,23 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>Quantity: [[${cart.quantity}]]</td>
-                                        <td class="text-end">[[${cart.quantity * cart.productPrice}]] VND</td>
+                                        <td class="align-middle">Quantity: [[${cart.quantity}]]</td>
+                                        <td class="align-middle text-end">[[${cart.quantity * cart.productPrice}]] VND
+                                        </td>
                                     </tr>
                                 </tbody>
 
                                 <tfoot>
                                     <tr>
-                                        <td colspan="2">Subtotal</td>
+                                        <td colspan="3">Subtotal</td>
                                         <td class="text-end">[[${subTotalPrice}]] VND</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">Shipping</td>
+                                        <td colspan="3">Shipping</td>
                                         <td class="text-end">20,000 VND</td>
                                     </tr>
                                     <tr class="fw-bold">
-                                        <td colspan="2">TOTAL</td>
+                                        <td colspan="3">TOTAL</td>
                                         <td class="text-end">[[${totalPrice}]] VND</td>
                                     </tr>
                                 </tfoot>

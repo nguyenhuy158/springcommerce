@@ -11,4 +11,6 @@ import com.example.springcommerce.model.Order;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByFullName(String fullName);
+
+    Long countById(Long id);
 }

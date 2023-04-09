@@ -93,6 +93,9 @@ public class UserDetailsImp implements UserDetails {
 
     @Override
     public String toString() {
-        return "[" + this.userName + "," + this.password + "," + this.role.name() + "]";
+        return "UserDetailsImp [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName
+                + ", address=" + address + ", phone=" + phone + ", password=" + password + ", active=" + active
+                + ", role=" + role + "]";
     }
+
 }
