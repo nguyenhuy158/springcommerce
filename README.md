@@ -10,8 +10,8 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
 
 
 ## SOlUTION
-  - [ ] Entity-relationship diagram 
-    - 
+  - [x] Entity-relationship diagram 
+    - ![Diagram db](src/main/resources/static/images/diagram.png)
 
 
 
