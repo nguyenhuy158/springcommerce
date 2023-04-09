@@ -76,28 +76,28 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
 
   ---  
 
-  | URL                          | METHOD | IMAGE                                                                           | DESCRIPTION |
-  | ---------------------------- | :----: | ------------------------------------------------------------------------------- | ----------- |
-  | `/api/products`              |  GET   | ![image](src/main/resources/static/images/api.products.get.png)                 |             |
-  | `/api/products?name=x`       |  GET   | ![image](src/main/resources/static/images/api.products.get.name.x.png)          |             |
-  | `/api/products`              |  POST  | ![image](src/main/resources/static/images/api.products.post.png)                |             |
-  | `/api/products`              | DELETE | ![image](src/main/resources/static/images/api.products.delete.png)              |             |
-  | `/api/products/id`           | DELETE | ![image](src/main/resources/static/images/api.products.id.delete.png)           |             |
-  | `/api/products/id`           |  GET   | ![image](src/main/resources/static/images/api.products.id.get.png)              |             |
-  | `/api/products/id`           |  PUT   | ![image](src/main/resources/static/images/api.products.id.put.png)              |             |
-  | `/api/products/id/orders`    |  GET   | ![image](src/main/resources/static/images/api.products.id.orders.get.png)       |             |
-  | `/api/products/id/orders`    |  POST  | ![image](src/main/resources/static/images/api.products.id.orders.post.png)      |             |
-  | `/api/products/id/orders/id` | DELETE | ![image](src/main/resources/static/images/api.products.id.orders.id.delete.png) |             |
+  | URL                          | METHOD | IMAGE                                                                           | DESCRIPTION                              |
+  | ---------------------------- | :----: | ------------------------------------------------------------------------------- | ---------------------------------------- |
+  | `/api/products`              |  GET   | ![image](src/main/resources/static/images/api.products.get.png)                 | Get all products                         |
+  | `/api/products?name=x`       |  GET   | ![image](src/main/resources/static/images/api.products.get.name.x.png)          | Get products with name containing 'x'    |
+  | `/api/products`              |  POST  | ![image](src/main/resources/static/images/api.products.post.png)                | Create a new product                     |
+  | `/api/products`              | DELETE | ![image](src/main/resources/static/images/api.products.delete.png)              | Delete all products                      |
+  | `/api/products/id`           | DELETE | ![image](src/main/resources/static/images/api.products.id.delete.png)           | Delete product by ID                     |
+  | `/api/products/id`           |  GET   | ![image](src/main/resources/static/images/api.products.id.get.png)              | Get product by ID                        |
+  | `/api/products/id`           |  PUT   | ![image](src/main/resources/static/images/api.products.id.put.png)              | Update product by ID                     |
+  | `/api/products/id/orders`    |  GET   | ![image](src/main/resources/static/images/api.products.id.orders.get.png)       | Get orders containing product with ID    |
+  | `/api/products/id/orders`    |  POST  | ![image](src/main/resources/static/images/api.products.id.orders.post.png)      | Add product with ID to cart              |
+  | `/api/products/id/orders/id` | DELETE | ![image](src/main/resources/static/images/api.products.id.orders.id.delete.png) | Remove product with ID from cart with ID |
 
   ---
 
-  | URL                       | METHOD | IMAGE                                                                     | DESCRIPTION |
-  | ------------------------- | :----: | ------------------------------------------------------------------------- | ----------- |
-  | `/api/orders`             |  GET   | ![image](src/main/resources/static/images/api.orders.get.png)             |             |
-  | `/api/orders`             |  POST  | ![image](src/main/resources/static/images/api.orders.post.png)            |             |
-  | `/api/orders/id`          |  GET   | ![image](src/main/resources/static/images/api.orders.id.get.png)          |             |
-  | `/api/orders/id`          |  PUT   | ![image](src/main/resources/static/images/api.orders.id.put.png)          |             |
-  | `/api/orders/id`          | DELETE | ![image](src/main/resources/static/images/api.orders.id.delete.png)       |             |
-  | `/api/orders/id/products` |  GET   | ![image](src/main/resources/static/images/api.orders.id.products.get.png) |             |
+  | URL                       | METHOD | IMAGE                                                                     | DESCRIPTION                     |
+  | ------------------------- | :----: | ------------------------------------------------------------------------- | ------------------------------- |
+  | `/api/orders`             |  GET   | ![image](src/main/resources/static/images/api.orders.get.png)             | Get all orders                  |
+  | `/api/orders`             |  POST  | ![image](src/main/resources/static/images/api.orders.post.png)            | Create a new order              |
+  | `/api/orders/id`          |  GET   | ![image](src/main/resources/static/images/api.orders.id.get.png)          | Get order by ID                 |
+  | `/api/orders/id`          |  PUT   | ![image](src/main/resources/static/images/api.orders.id.put.png)          | Update order by ID              |
+  | `/api/orders/id`          | DELETE | ![image](src/main/resources/static/images/api.orders.id.delete.png)       | Delete order by ID              |
+  | `/api/orders/id/products` |  GET   | ![image](src/main/resources/static/images/api.orders.id.products.get.png) | View products in order with ID. |
 
   --- END ---
