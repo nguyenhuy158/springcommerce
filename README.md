@@ -77,24 +77,26 @@ for the components, infrastructure design if any.
   - [ ] Full CURL commands or Postman snapshots to verify the APIs
   (include full request endpoints, HTTP Headers and request payload
   if any).
-  | URL                    | METHOD | IMAGE                                                            | DESCRIPTION |
-  | ---------------------- | :----: | ---------------------------------------------------------------- | ----------- |
-  | `/api/products`        |  GET   | ![image](src/main/resources/static/images/api_products[get].png) |             |
-  | `/api/products?name=x` |  GET   | ![image](src/main/resources/static/images/api_products[get].png) |             |
-  | `/api/products`        |  POST  | ![image](src/main/resources/static/images/api_products[get].png) |             |
-  | `/api/products`        | DELETE | ![image](src/main/resources/static/images/api_products[get].png) |             |
-  | `/api/products/id`     | DELETE | ![image](src/main/resources/static/images/api_products[get].png) |             |
-  | `/api/products/id`     |  GET   | ![image](src/main/resources/static/images/api_products[get].png) |             |
-  | `/api/products/id`     |  PUT   | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | URL                          | METHOD | IMAGE                                                                           | DESCRIPTION |
+  | ---------------------------- | :----: | ------------------------------------------------------------------------------- | ----------- |
+  | `/api/products`              |  GET   | ![image](src/main/resources/static/images/api.products.get.png)                 |             |
+  | `/api/products?name=x`       |  GET   | ![image](src/main/resources/static/images/api.products.get.name.x.png)          |             |
+  | `/api/products`              |  POST  | ![image](src/main/resources/static/images/api.products.post.png)                |             |
+  | `/api/products`              | DELETE | ![image](src/main/resources/static/images/api.products.delete.png)              |             |
+  | `/api/products/id`           | DELETE | ![image](src/main/resources/static/images/api.products.id.delete.png)           |             |
+  | `/api/products/id`           |  GET   | ![image](src/main/resources/static/images/api.products.id.get.png)              |             |
+  | `/api/products/id`           |  PUT   | ![image](src/main/resources/static/images/api.products.id.put.png)              |             |
+  | `/api/products/id/orders`    |  GET   | ![image](src/main/resources/static/images/api.products.id.orders.get.png)       |             |
+  | `/api/products/id/orders`    |  POST  | ![image](src/main/resources/static/images/api.products.id.orders.post.png)      |             |
+  | `/api/products/id/orders/id` | DELETE | ![image](src/main/resources/static/images/api.products.id.orders.id.delete.png) |             |
 
 
-  | URL                  | METHOD | IMAGE                                                            | DESCRIPTION |
-  | -------------------- | :----: | ---------------------------------------------------------------- | ----------- |
-  | `/api/orders`        |  GET   | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
-  | `/api/orders?name=x` |  GET   | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
-  | `/api/orders`        |  POST  | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
-  | `/api/orders`        | DELETE | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
-  | `/api/orders/id`     | DELETE | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
-  | `/api/orders/id`     |  GET   | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
-  | `/api/orders/id`     |  PUT   | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | URL                       | METHOD | IMAGE                                                                     | DESCRIPTION |
+  | ------------------------- | :----: | ------------------------------------------------------------------------- | ----------- |
+  | `/api/orders`             |  GET   | ![image](src/main/resources/static/images/api.orders.get.png)             |             |
+  | `/api/orders`             |  POST  | ![image](src/main/resources/static/images/api.orders.post.png)            |             |
+  | `/api/orders/id`          |  GET   | ![image](src/main/resources/static/images/api.orders.id.get.png)          |             |
+  | `/api/orders/id`          |  PUT   | ![image](src/main/resources/static/images/api.orders.id.put.png)          |             |
+  | `/api/orders/id`          | DELETE | ![image](src/main/resources/static/images/api.orders.id.delete.png)       |             |
+  | `/api/orders/id/products` |  GET   | ![image](src/main/resources/static/images/api.orders.id.products.get.png) |             |
 
