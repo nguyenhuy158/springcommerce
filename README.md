@@ -116,7 +116,7 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
 
 ## Video Demo
 
-  - ![](https://youtu.be/z0GKWfaDvOU)
-  - [](https://youtu.be/z0GKWfaDvOU)
-
+  - ![Video Demo](https://youtu.be/z0GKWfaDvOU)
+  - [Video Demo](https://youtu.be/z0GKWfaDvOU)
+  - [![Video Demo](src/main/resources/static/images/result/1.png)](https://youtu.be/z0GKWfaDvOU)
   --- END ---
