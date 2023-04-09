@@ -6,7 +6,7 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
 
 ## Requirement
 
-![click here to detail](/REQUIREMENT.md)
+[click here to detail](/REQUIREMENT.md)
 
 
 ## SOlUTION
