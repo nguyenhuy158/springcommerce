@@ -28,7 +28,7 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
 
     The code structure follows the Model-View-Controller (MVC) architectural pattern, which separates the application into three main components:
 
-    1. Model: This component is responsible for managing the data of the application. It includes entities, repositories, and services that interact with the database.
+  1. Model: This component is responsible for managing the data of the application. It includes entities, repositories, and services that interact with the database.
     ```
     | - model
     |   | - entities
@@ -36,7 +36,7 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
     |   | - services
     ```
     
-    2. View: This component is responsible for rendering the user interface of the application. It includes HTML, CSS, and JavaScript files that are served to the client's browser.
+ 1. View: This component is responsible for rendering the user interface of the application. It includes HTML, CSS, and JavaScript files that are served to the client's browser.
     ```
     | - resources
     |   | - static
@@ -48,7 +48,7 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
     |   |   | - *.html
     ```
 
-    3. Controller: This component acts as an intermediary between the Model and View components. It receives user requests, processes them, and returns responses. It includes controllers that handle HTTP requests and map them to the appropriate service methods.
+ 1. Controller: This component acts as an intermediary between the Model and View components. It receives user requests, processes them, and returns responses. It includes controllers that handle HTTP requests and map them to the appropriate service methods.
     ```
     | - controller
     |   | - *Controller.java
@@ -58,14 +58,14 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
 
     To run the application on a local computer, please follow the steps below:
 
-    1. Download and install version `17` of the `Java Development Kit (JDK)` on your computer. The download link can be found at https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html.
-    2. Download and install `Docker` from https://www.docker.com/products/docker-desktop/.
-    3. Download and install `Visual Studio Code (vscode)` from https://code.visualstudio.com/download.
-    4. Download and enable the `Spring Boot Extension Pack` extension in vscode. The extension can be downloaded from https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack.
-    5. Download and enable the `Extension Pack for Java extension` in vscode. The extension can be downloaded from https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack.
-    6. Download the `source code` from https://github.com/nguyenhuy158/springcommerce and open it in vscode.
-    7. Run the `docker-compose.yml` file located at `/src/main/resources/docker-compose.yml` using the command `docker compose up -d`.
-    8. Press `ctrl + shift + p` in vscode and enter `Spring Boot Dashboard:run...`. The application should now be running.
+  1. Download and install version `17` of the `Java Development Kit (JDK)` on your computer. The download link can be found at https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html.
+  2. Download and install `Docker` from https://www.docker.com/products/docker-desktop/.
+  3. Download and install `Visual Studio Code (vscode)` from https://code.visualstudio.com/download.
+  4. Download and enable the `Spring Boot Extension Pack` extension in vscode. The extension can be downloaded from https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack.
+  5. Download and enable the `Extension Pack for Java extension` in vscode. The extension can be downloaded from https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack.
+  6. Download the `source code` from https://github.com/nguyenhuy158/springcommerce and open it in vscode.
+  7. Run the `docker-compose.yml` file located at `/src/main/resources/docker-compose.yml` using the command `docker compose up -d`.
+  8. Press `ctrl + shift + p` in vscode and enter `Spring Boot Dashboard:run...`. The application should now be running.
 
   - [x] Full CURL commands or Postman snapshots to verify the APIs (include full request endpoints, HTTP Headers and request payload if any).
   
