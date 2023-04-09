@@ -77,7 +77,24 @@ for the components, infrastructure design if any.
   - [ ] Full CURL commands or Postman snapshots to verify the APIs
   (include full request endpoints, HTTP Headers and request payload
   if any).
+  | URL                    | METHOD | IMAGE                                                            | DESCRIPTION |
+  | ---------------------- | :----: | ---------------------------------------------------------------- | ----------- |
+  | `/api/products`        |  GET   | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | `/api/products?name=x` |  GET   | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | `/api/products`        |  POST  | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | `/api/products`        | DELETE | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | `/api/products/id`     | DELETE | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | `/api/products/id`     |  GET   | ![image](src/main/resources/static/images/api_products[get].png) |             |
+  | `/api/products/id`     |  PUT   | ![image](src/main/resources/static/images/api_products[get].png) |             |
 
 
-  
+  | URL                  | METHOD | IMAGE                                                            | DESCRIPTION |
+  | -------------------- | :----: | ---------------------------------------------------------------- | ----------- |
+  | `/api/orders`        |  GET   | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
+  | `/api/orders?name=x` |  GET   | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
+  | `/api/orders`        |  POST  | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
+  | `/api/orders`        | DELETE | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
+  | `/api/orders/id`     | DELETE | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
+  | `/api/orders/id`     |  GET   | ![image](src/main/resources/static/images/api_orders[get].png)   |             |
+  | `/api/orders/id`     |  PUT   | ![image](src/main/resources/static/images/api_products[get].png) |             |
 
