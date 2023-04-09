@@ -10,6 +10,8 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/history.css">
+
+    <th:block th:import="com.example.springcommerce.utils.MyUtils"></th:block>
 </header>
 
 <body>
@@ -54,8 +56,12 @@
                             <li th:each="product, idx :${order?.products}" class="list-group-item">
                                 <div class="row">
                                     <div class="col-4">[[${product.name}]]</div>
-                                    <div class="col-5">Quantity: [[${order?.orderDetails.get(idx.index).quanity}]]</div>
-                                    <div class="col-3">Price: [[${product.price}]] VND</div>
+                                    <div class="col-5">Quantity: [[${order?.orderDetails?.get(idx.index)?.quanity}]]
+                                    </div>
+                                    <div class="col-3">Price: [[${product?.price.toString().format('###,###,###.0')}]]
+                                        VND
+                                    </div>
+
                                 </div>
                             </li>
                         </ul>

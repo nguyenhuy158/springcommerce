@@ -34,7 +34,7 @@
                         Users
                     </a>
                 </li>
-                <li th:if="${isLogin}" class="nav-item">
+                <li th:if="${isLogin and isAdmin == false}" class="nav-item">
                     <a th:classappend="${isCart} ? 'active' : ''" class="nav-link" th:href="@{/cart}">
                         Carts
                     </a>

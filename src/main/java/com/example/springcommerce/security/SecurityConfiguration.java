@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                 .requestMatchers("/register/**")
                 .permitAll())
                 .authorizeHttpRequests()
+                .requestMatchers("/cart/**").hasAnyAuthority(Role.USER.name())
                 .requestMatchers("/users").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/new").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/products/edit/{id}").hasAnyAuthority(Role.ADMIN.name())

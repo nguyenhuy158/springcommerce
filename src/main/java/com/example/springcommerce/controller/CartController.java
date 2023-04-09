@@ -32,6 +32,7 @@ public class CartController {
     model.addAttribute("isCart", true);
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
     model.addAttribute("pageTitle", "Shopping Cart");
+    model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
 
     List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
     Double totalPrice = cartItemServiceImpl.getTotalPrice();

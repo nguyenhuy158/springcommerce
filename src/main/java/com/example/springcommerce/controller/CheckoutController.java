@@ -42,6 +42,10 @@ public class CheckoutController {
     public String checkout(Model model) {
         List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
 
+        if (carts.size() == 0) {
+            return "redirect:/cart";
+        }
+
         Order order = new Order();
         order.setFullName(userDetailsServiceImpl.getCurrentUserId());
         Order save = orderService.save(order);

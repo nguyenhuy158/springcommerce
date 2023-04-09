@@ -119,10 +119,11 @@ public class ProductController {
     @GetMapping("/products/edit/{id}")
     public String showEditForm(@PathVariable("id") Long id, Model model, RedirectAttributes ra) {
         model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+        model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
 
         try {
-            Product user = service.get(id);
-            model.addAttribute("product", user);
+            Product product = service.get(id);
+            model.addAttribute("product", product);
             model.addAttribute("pageTitle", "Edit product (ID: " + id + ")");
 
             return "product_form";
