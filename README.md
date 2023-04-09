@@ -29,14 +29,16 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
     The code structure follows the Model-View-Controller (MVC) architectural pattern, which separates the application into three main components:
 
   1. Model: This component is responsible for managing the data of the application. It includes entities, repositories, and services that interact with the database.
-    ```java
+  
+    
     | - model
     |   | - entities
     |   | - repositories
     |   | - services
-    ```
     
- 1. View: This component is responsible for rendering the user interface of the application. It includes HTML, CSS, and JavaScript files that are served to the client's browser.
+    
+ 2. View: This component is responsible for rendering the user interface of the application. It includes HTML, CSS, and JavaScript files that are served to the client's browser.
+ 
     ```
     | - resources
     |   | - static
@@ -48,7 +50,8 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
     |   |   | - *.html
     ```
 
- 1. Controller: This component acts as an intermediary between the Model and View components. It receives user requests, processes them, and returns responses. It includes controllers that handle HTTP requests and map them to the appropriate service methods.
+ 3. Controller: This component acts as an intermediary between the Model and View components. It receives user requests, processes them, and returns responses. It includes controllers that handle HTTP requests and map them to the appropriate service methods.
+ 
     ```
     | - controller
     |   | - *Controller.java
