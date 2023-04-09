@@ -48,6 +48,8 @@ public class CheckoutController {
 
         Order order = new Order();
         order.setFullName(userDetailsServiceImpl.getCurrentUserId());
+        order.setPhone(userDetailsServiceImpl.getCurrentUser().getPhone());
+        order.setAddress(userDetailsServiceImpl.getCurrentUser().getAddress());
         Order save = orderService.save(order);
 
         List<OrderDetail> list = carts.stream().map(arg0 -> new OrderDetail(
