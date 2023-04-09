@@ -29,7 +29,7 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
     The code structure follows the Model-View-Controller (MVC) architectural pattern, which separates the application into three main components:
 
   1. Model: This component is responsible for managing the data of the application. It includes entities, repositories, and services that interact with the database.
-    ```
+    ```java
     | - model
     |   | - entities
     |   | - repositories
