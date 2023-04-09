@@ -100,4 +100,23 @@ A small start-up named "SpringCommerce" wants to build a very simple online shop
   | `/api/orders/id`          | DELETE | ![image](src/main/resources/static/images/api.orders.id.delete.png)       | Delete order by ID              |
   | `/api/orders/id/products` |  GET   | ![image](src/main/resources/static/images/api.orders.id.products.get.png) | View products in order with ID. |
 
+## Some product photos.
+
+  - ![](src/main/resources/static/images/result/1.png)
+  - ![](src/main/resources/static/images/result/2.png)
+  - ![](src/main/resources/static/images/result/3.png)
+  - ![](src/main/resources/static/images/result/4.png)
+  - ![](src/main/resources/static/images/result/5.png)
+  - ![](src/main/resources/static/images/result/6.png)
+  - ![](src/main/resources/static/images/result/7.png)
+  - ![](src/main/resources/static/images/result/8.png)
+  - ![](src/main/resources/static/images/result/9.png)
+  - ![](src/main/resources/static/images/result/10.png)
+
+
+## Video Demo
+
+  - ![](https://youtu.be/z0GKWfaDvOU)
+  - [](https://youtu.be/z0GKWfaDvOU)
+
   --- END ---
