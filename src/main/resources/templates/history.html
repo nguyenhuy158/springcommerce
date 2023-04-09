@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/cart.css">
+    <link rel="stylesheet" href="/css/history.css">
 </header>
 
 <body>
@@ -19,44 +19,57 @@
         </nav>
     </div>
 
-    <!-- newest ui -->
-    <!-- new ui -->
     <div class="container">
-        <div class="container">
-            <br class="my-4">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Product Id</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Product Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="container py-5 ">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Total INVOICE:
+                    <span class="badge bg-primary rounded-pill">[[${orders?.size()}]]</span>
+                </li>
+            </ul>
 
-                    <!-- table-secondary -->
-                    <tr th:each="cart : ${carts}" class="table-primary">
-                        <td th:text="${cart?.productId}"></td>
-                        <td th:text="${cart?.productName}"></td>
-                        <td th:text="${cart?.productPrice}"></td>
-                        <td th:text="${cart?.quantity}"></td>
-                        <td th:text="${cart?.quantity * cart.productPrice}"></td>
-                    </tr>
+            <div th:each="order : ${orders}" class="row d-flex justify-content-center align-items-center my-3">
+                <div class="col-12">
+                    <div class="card card-stepper text-black" style="border-radius: 16px;">
+                        <div class="card-body p-5">
+                            <div class="d-flex justify-content-between align-items-center mb-5">
+                                <div>
+                                    <h5 class="mb-0">INVOICE
+                                        <span class="text-primary font-weight-bold">
+                                            #[[${order?.orderId}]]
+                                        </span>
+                                    </h5>
+                                </div>
+                                <div class="text-end">
+                                    <p class="mb-0">Order Date:
+                                        <span>
+                                            [[${order?.orderDate}]]
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
-                    <!-- total price -->
-                    <tr class="table-secondary">
-                        <td colspan="4" scope="row">Total price:</td>
-                        <td th:text="${totalPrice}"></td>
-                    </tr>
-                </tbody>
-            </table>
+                        <ul class="list-group list-group-flush">
+                            <li th:each="product, idx :${order?.products}" class="list-group-item">
+                                <div class="row">
+                                    <div class="col-4">[[${product.name}]]</div>
+                                    <div class="col-5">Quantity: [[${order?.orderDetails.get(idx.index).quanity}]]</div>
+                                    <div class="col-3">Price: [[${product.price}]] VND</div>
+                                </div>
+                            </li>
+                        </ul>
 
-            <div class="row">
-                <div class="col">
-                    <p>Total:
-                    </p>
+                        <div class="card-footer text-muted">
+                            <div class="row">
+                                <div class="col-9">
+                                    <i class="fa-solid fa-truck-fast"></i>
+                                    Your order is currently in transit and scheduled for prompt delivery.
+                                </div>
+                                <div class="col-3">Total price: [[${order?.total}]] VND</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
