@@ -77,6 +77,7 @@ for the components, infrastructure design if any.
   - [ ] Full CURL commands or Postman snapshots to verify the APIs
   (include full request endpoints, HTTP Headers and request payload
   if any).
+  
   | URL                          | METHOD | IMAGE                                                                           | DESCRIPTION |
   | ---------------------------- | :----: | ------------------------------------------------------------------------------- | ----------- |
   | `/api/products`              |  GET   | ![image](src/main/resources/static/images/api.products.get.png)                 |             |
