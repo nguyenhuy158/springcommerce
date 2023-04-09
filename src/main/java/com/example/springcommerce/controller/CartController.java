@@ -9,10 +9,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.springcommerce.model.CartItem;
 import com.example.springcommerce.service.CartItemServiceImpl;
@@ -28,7 +27,7 @@ public class CartController {
   @Autowired
   CartItemServiceImpl cartItemServiceImpl;
 
-  @GetMapping("")
+  @RequestMapping(value = { "" }, method = RequestMethod.GET)
   public String viewCart(Model model) {
     model.addAttribute("isCart", true);
     model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
@@ -47,7 +46,7 @@ public class CartController {
     return "cart";
   }
 
-  @PostMapping("/add")
+  @RequestMapping(value = { "/add" }, method = RequestMethod.POST)
   public String addToCart(@ModelAttribute("cartItem") CartItem cartItem) {
     cartItemServiceImpl.addCartItem(cartItem);
     return "redirect:/cart";

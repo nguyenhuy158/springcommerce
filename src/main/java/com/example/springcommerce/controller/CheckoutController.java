@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.springcommerce.model.CartItem;
 import com.example.springcommerce.model.Order;
@@ -37,11 +37,9 @@ public class CheckoutController {
     @Autowired
     ProductService productService;
 
-    @PostMapping("")
+    @RequestMapping(value = { "" }, method = RequestMethod.POST)
     @Transactional
     public String checkout(Model model) {
-        model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
-
         List<CartItem> carts = cartItemServiceImpl.getCurrentCartsByCurrentUser();
 
         Order order = new Order();
@@ -58,6 +56,17 @@ public class CheckoutController {
 
         cartItemServiceImpl.clearCurrentCartByCurrentUser();
 
+        return "redirect:/checkout";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public String pageCheckOut(Model model) {
+        model.asMap().clear();
+        model.addAttribute("isLogin", userDetailsServiceImpl.isLogin());
+        model.addAttribute("pageTitle", "Checkout");
+        model.addAttribute("isAdmin", userDetailsServiceImpl.isAdmin());
+
         return "checkout-success";
     }
+
 }

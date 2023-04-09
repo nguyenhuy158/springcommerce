@@ -40,6 +40,7 @@
                                 <div>
                                     <span class="me-3">[[${cartDate}]]</span>
                                     <span class="badge rounded-pill bg-info">
+                                        <i class="fa-solid fa-wallet"></i>
                                         Payment by Cash
                                     </span>
                                 </div>
@@ -151,10 +152,15 @@
 
                             <h3 class="h6">Address</h3>
                             <address>
-                                <strong>[[${currentUser.lastName + ' ' + currentUser.firstName}]]</strong>
+                                <strong>
+                                    <i class="fa-solid fa-user-tie"></i>
+                                    [[${currentUser.lastName + ' ' + currentUser.firstName}]]
+                                </strong>
                                 <br>
+                                <i class="fa-solid fa-map-location-dot"></i>
                                 [[${currentUser.address}]]
                                 <br>
+                                <i class="fa-solid fa-phone"></i>
                                 <abbr title="Phone">Phone:</abbr> [[${currentUser.phone}]]
                             </address>
                         </div>
